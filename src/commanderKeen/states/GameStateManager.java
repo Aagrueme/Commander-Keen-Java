@@ -6,31 +6,31 @@ import java.awt.event.MouseEvent;
 
 public class GameStateManager {
     public static final int PLAY_STATE = 2;
-    public static final int ACTION_CHOOSE_STATE = 0;
+    public static final int MENU_STATE = 0;
     public static final int LOAD_STATE = 1;
 
     public void setState(int state) {
         this.state = state;
         switch (state){
             case 0:
-                acs = new ActionChooseState(this);
+                acs = new MenuState(this);
                 states[0] = acs;
                 break;
             case 1:
-                ls = new LoadState(this);
+                ls = new LevelState(this);
                 states[1] = ls;
                 break;
             case 2:
-                ps = new PlayState(this);
+                ps = new MapState(this);
                 states[2] = ps;
                 break;
         }
     }
 
     public int state;
-    private PlayState ps;
-    private ActionChooseState acs = new ActionChooseState(this);
-    private LoadState ls;
+    private MapState ps;
+    private MenuState acs = new MenuState(this);
+    private LevelState ls;
     private State[] states;
 
     public GameStateManager(int state){

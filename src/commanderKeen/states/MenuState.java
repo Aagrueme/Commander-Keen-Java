@@ -4,9 +4,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class ActionChooseState extends State {
+public class MenuState extends State {
 
-	public ActionChooseState(GameStateManager gsm) {
+	public MenuState(GameStateManager gsm) {
 		super(gsm);
 	}
 

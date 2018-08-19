@@ -1,7 +1,6 @@
 package commanderKeen.main;
 
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -9,7 +8,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
@@ -20,12 +19,8 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener,Mous
 	
 	public static int width;
 	public static int height;
-	
-	public static Mouse mouse;
-	
-	public static GameStateManager gsm;
 
-	GamePanel() {
+    GamePanel() {
 		super();
         setPreferredSize(new Dimension(Game.width,Game.height));
         addKeyListener(this);
@@ -33,69 +28,65 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener,Mous
         setFocusable(true);
         requestFocus();
 
-        mouse = new Mouse(this);
-        width = getPreferredSize().width;
-        height = getPreferredSize().height;
+        Game.mouse = new Mouse(this);
+        Game.width = getPreferredSize().width;
+        Game.height = getPreferredSize().height;
 
-        gsm = new GameStateManager(GameStateManager.ACTION_CHOOSE_STATE);
+        Game.gsm = new GameStateManager(GameStateManager.MENU_STATE);
 	}
 	
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+        Game.gsm.render(g2d);
+	}
+
+	private void update(){
+        Game.gsm.update();
+    }
+
+    @Override
+    public void addNotify() {
+        Timer timer = new Timer(1000 / Game.FPS, this);
+        timer.start();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        update();
+        repaint();
+    }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+        Game.gsm.mousePressed(e);
 	}
 
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
-		
+	public void mouseReleased(MouseEvent e) {
+        Game.gsm.mouseReleased(e);
 	}
 
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		
-		
+	public void keyPressed(KeyEvent e) {
+        Game.gsm.keyPressed(e, e.getKeyCode());
 	}
 
 	@Override
-	public void mouseExited(MouseEvent arg0) {
-		
-		
-	}
+	public void keyReleased(KeyEvent e) {
+        Game.gsm.keyReleased(e, e.getKeyCode());
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    @Override
+    public void mouseExited(MouseEvent e) {}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent arg0) {
-		
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent arg0) {
-		
-		
-	}
-
-	@Override
-	public void keyTyped(KeyEvent arg0) {
-		
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		
-		
-	}
+	public void keyTyped(KeyEvent e) {}
 }

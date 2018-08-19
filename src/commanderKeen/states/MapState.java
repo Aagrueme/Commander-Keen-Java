@@ -4,9 +4,9 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class LoadState extends State {
+public class MapState extends State {
 
-	public LoadState(GameStateManager gsm) {
+	public MapState(GameStateManager gsm) {
 		super(gsm);
 	}
 
