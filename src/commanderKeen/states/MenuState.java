@@ -14,6 +14,7 @@ public class MenuState extends State {
 	private Animation animation;
 
 	public MenuState(GameStateManager gsm) {
+<<<<<<< HEAD
 		super(gsm, 1);
 		try {
 			animation = new Animation(new Spritesheet(ImageIO.read(ResourceLoader.load("commanderKeen/assets/menu/Cursor.png")), 1, 5, 8, 8, 9*8, 0), 0, 5, 50L);
@@ -21,6 +22,10 @@ public class MenuState extends State {
 			e.printStackTrace();
 		}
 		animation.startAnimation();
+=======
+		super(gsm);
+//Hey Git
+>>>>>>> fa488d51adda8ea71477c744823cd7c899efb893
 	}
 
 	@Override
