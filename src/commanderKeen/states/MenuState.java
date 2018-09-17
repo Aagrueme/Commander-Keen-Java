@@ -8,7 +8,6 @@ public class MenuState extends State {
 
 	public MenuState(GameStateManager gsm) {
 		super(gsm);
-//Hey Git
 	}
 
 	@Override
