@@ -1,44 +1,62 @@
 package commanderKeen.states;
 
+import commanderKeen.main.GamePanel;
+
+import javax.swing.*;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.VolatileImage;
 
 public class GameStateManager {
-    public static final int PLAY_STATE = 2;
-    public static final int MENU_STATE = 0;
-    public static final int LOAD_STATE = 1;
+    public static final int LOAD_STATE = 0;
+    public static final int MENU_STATE = 1;
+    public static final int MAP_STATE = 2;
+    public static final int LEVEL_STATE = 3;
+    public JPanel panel;
+
+    public State getState(){
+        return states[state];
+    }
 
     public void setState(int state) {
         this.state = state;
         switch (state){
             case 0:
-                acs = new MenuState(this);
-                states[0] = acs;
+                los = new LoadState(this);
+                states[0] = los;
                 break;
             case 1:
-                ls = new LevelState(this);
-                states[1] = ls;
+                mes = new MenuState(this);
+                states[1] = mes;
                 break;
             case 2:
-                ps = new MapState(this);
-                states[2] = ps;
+                mas = new MapState(this);
+                states[2] = mas;
+                break;
+            case 3:
+                les = new LevelState(this);
+                states[3] = les;
                 break;
         }
     }
 
     public int state;
-    private MapState ps;
-    private MenuState acs = new MenuState(this);
-    private LevelState ls;
+    private MapState mas;
+    private MenuState mes;
+    private LevelState les;
+    private LoadState los;
     private State[] states;
 
-    public GameStateManager(int state){
+    public GameStateManager(int state, GamePanel panel){
         this.state = state;
+        this.panel = panel;
         states = new State[4];
-        states[0] = acs;
-        states[1] = ls;
-        states[2] = ps;
+        los = new LoadState(this);
+        states[0] = los;
+        states[1] = mes;
+        states[2] = mas;
+        states[3] = les;
     }
 
     public void update(){
@@ -48,7 +66,7 @@ public class GameStateManager {
     }
     public void render(Graphics2D g2d){
         try {
-            states[state].render(g2d);
+            states[state].renderState(g2d);
         } catch (Exception e) {}
     }
     public void keyPressed(KeyEvent e , int k){
@@ -62,5 +80,8 @@ public class GameStateManager {
     }
     public void mouseReleased(MouseEvent e){
         states[state].mouseReleased(e);
+    }
+    public void windowResized(){
+        states[state].windowResized();
     }
 }

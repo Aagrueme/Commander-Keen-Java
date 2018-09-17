@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class LevelState extends State {
 
 	public LevelState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, 1);
 	}
 
 	@Override
@@ -37,11 +37,6 @@ public class LevelState extends State {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
 
 	}
 }

@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class MapState extends State {
 
 	public MapState(GameStateManager gsm) {
-		super(gsm);
+		super(gsm, 1);
 	}
 
 	@Override
@@ -37,11 +37,6 @@ public class MapState extends State {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
 
 	}
 }

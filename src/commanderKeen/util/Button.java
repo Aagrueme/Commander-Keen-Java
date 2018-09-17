@@ -34,5 +34,6 @@ public class Button {
             g2d.drawRect(x, y, width, height);
         }
         g2d.drawImage(texture, x, y, null);
+        g2d.drawString(text, x, y);
     }
 }
