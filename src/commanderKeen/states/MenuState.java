@@ -22,7 +22,6 @@ public class MenuState extends State {
 		}
 		animation.startAnimation();
 
-//hey Git
 	}
 
 	@Override
