@@ -4,6 +4,7 @@ import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 
 import java.awt.BorderLayout;
+import java.awt.image.VolatileImage;
 
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
@@ -15,14 +16,15 @@ public class Game extends JFrame {
     static int width = 600;
     static int height = 400;
 
-    public static int FPS = 60;
+    static int FPS = 60;
+
+    public static int SCALE = 3;
 
     public static Mouse mouse;
-
     public static GameStateManager gsm;
 
-	Game(){
-		super("Shooter");
+    Game(){
+        super("Minecraft Sky Survival Platformer of Awesomeness");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(width, height);
         setLocationRelativeTo(null);
@@ -32,12 +34,10 @@ public class Game extends JFrame {
         pack();
 
         setVisible(true);
-	}
-	
-	
-	
-	public static void main(String[] args) {
-		new Game();
-	}
+    }
+
+    public static void main (String[] args){
+        new Game();
+    }
 
 }

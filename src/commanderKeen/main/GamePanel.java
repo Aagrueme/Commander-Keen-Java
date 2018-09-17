@@ -1,55 +1,57 @@
 package commanderKeen.main;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 
 import javax.swing.*;
 
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 
-public class GamePanel extends JPanel implements ActionListener,KeyListener,MouseListener {
+public class GamePanel extends JPanel implements ComponentListener,ActionListener,KeyListener,MouseListener {
 	
 	private static final long serialVersionUID = 1L;
 	
 	public static int width;
 	public static int height;
+	private Timer timer;
 
-    GamePanel() {
-		super();
+    GamePanel(){
+        super();
         setPreferredSize(new Dimension(Game.width,Game.height));
         addKeyListener(this);
         addMouseListener(this);
+        addComponentListener(this);
         setFocusable(true);
         requestFocus();
 
         Game.mouse = new Mouse(this);
-        Game.width = getPreferredSize().width;
-        Game.height = getPreferredSize().height;
+        width = getPreferredSize().width;
+        height = getPreferredSize().height;
 
-        Game.gsm = new GameStateManager(GameStateManager.MENU_STATE);
-	}
-	
-	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		Graphics2D g2d = (Graphics2D) g;
-        Game.gsm.render(g2d);
-	}
-
-	private void update(){
-        Game.gsm.update();
+        Game.gsm = new GameStateManager(GameStateManager.LOAD_STATE, this);
     }
 
     @Override
-    public void addNotify() {
-        Timer timer = new Timer(1000 / Game.FPS, this);
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setBackground((new Color(146,189,221)));
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        Game.gsm.render(g2d);
+        System.out.println(true);
+    }
+
+    @Override
+    public void addNotify(){
+        super.addNotify();
+        timer = new Timer(1000 / Game.FPS,this);
         timer.start();
+    }
+
+    private void update() {
+        Game.gsm.update();
     }
 
     @Override
@@ -58,23 +60,16 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener,Mous
         repaint();
     }
 
-	@Override
-	public void mousePressed(MouseEvent e) {
-        Game.gsm.mousePressed(e);
-	}
+    @Override
+    public void keyTyped(KeyEvent e) {}
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
-        Game.gsm.mouseReleased(e);
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
+    @Override
+    public void keyPressed(KeyEvent e) {
         Game.gsm.keyPressed(e, e.getKeyCode());
-	}
+    }
 
-	@Override
-	public void keyReleased(KeyEvent e) {
+    @Override
+    public void keyReleased(KeyEvent e) {
         Game.gsm.keyReleased(e, e.getKeyCode());
     }
 
@@ -82,11 +77,42 @@ public class GamePanel extends JPanel implements ActionListener,KeyListener,Mous
     public void mouseClicked(MouseEvent e) {}
 
     @Override
+    public void mousePressed(MouseEvent e) {
+        Game.gsm.mousePressed(e);
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        Game.gsm.mouseReleased(e);
+    }
+
+    @Override
     public void mouseEntered(MouseEvent e) {}
 
     @Override
     public void mouseExited(MouseEvent e) {}
 
-	@Override
-	public void keyTyped(KeyEvent e) {}
+    @Override
+    public void componentResized(ComponentEvent e) {
+        if(e.getSource().equals(this)){
+            width = getWidth();
+            height = getHeight();
+            Game.gsm.windowResized();
+        }
+    }
+
+    @Override
+    public void componentMoved(ComponentEvent e) {
+
+    }
+
+    @Override
+    public void componentShown(ComponentEvent e) {
+
+    }
+
+    @Override
+    public void componentHidden(ComponentEvent e) {
+
+    }
 }
