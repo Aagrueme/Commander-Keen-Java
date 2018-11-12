@@ -4,16 +4,11 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-import javax.imageio.ImageIO;
-
-import commanderKeen.util.Animation;
-import commanderKeen.util.ResourceLoader;
-import commanderKeen.util.Spritesheet;
-
 public class LoadState extends State {
 
 	public LoadState(GameStateManager gsm) {
-		super(gsm, 10);
+		super(gsm, 10, 10);
+		gsm.setState(GameStateManager.MENU_STATE);
 	}
 
 	@Override

@@ -52,7 +52,7 @@ public class GameStateManager {
         this.state = state;
         this.panel = panel;
         states = new State[4];
-        los = new LoadState(this);
+        mes = new MenuState(this);
         states[0] = los;
         states[1] = mes;
         states[2] = mas;
@@ -80,8 +80,5 @@ public class GameStateManager {
     }
     public void mouseReleased(MouseEvent e){
         states[state].mouseReleased(e);
-    }
-    public void windowResized(){
-        states[state].windowResized();
     }
 }

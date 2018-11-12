@@ -1,41 +1,46 @@
 package commanderKeen.states;
 
 import commanderKeen.main.Game;
-import commanderKeen.main.GamePanel;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.VolatileImage;
 
 public abstract class State {
 
-    protected GameStateManager gsm;
+    GameStateManager gsm;
 
-    public VolatileImage image;
-    private int scale;
+    private double scaleX;
+    private double scaleY;
 
-    public State(GameStateManager gsm, int scale) {
+    State(GameStateManager gsm, double scaleX, double scaleY) {
         this.gsm = gsm;
-        this.scale = scale;
-        image = gsm.panel.createVolatileImage(GamePanel.width /scale, GamePanel.height /scale);
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
     }
 
-    protected void setScale(int scale){
-        this.scale = scale;
+    void setScale(double scaleX, double scaleY){
+        this.scaleX = scaleX;
+        this.scaleY = scaleY;
     }
 
     public abstract void update();
     protected abstract void render(Graphics2D g);
-    public void renderState(Graphics2D g){
-        Graphics2D g2d = image.createGraphics();
+    void renderState(Graphics2D g){
+        VolatileImage img = gsm.panel.createVolatileImage((int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
+        Graphics2D g2d = img.createGraphics();
+        Color color = g2d.getColor();
+        g2d.setColor(new Color(168,168,168));
+        g2d.fillRect(0, 0, (int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
+        g2d.setColor(color);
         render(g2d);
-        g.drawImage(image, 0, 0, GamePanel.width, GamePanel.height, null);
-    };
+        g.setTransform(AffineTransform.getScaleInstance(scaleX, scaleY));
+        g.drawImage(img, 0, 0, null);
+    }
     public abstract void keyPressed(KeyEvent e, int k);
     public abstract void keyReleased(KeyEvent e, int k);
     public abstract void mousePressed(MouseEvent e);
     public abstract void mouseReleased(MouseEvent e);
-
-    public void windowResized() {image = gsm.panel.createVolatileImage(GamePanel.width /scale, GamePanel.height /scale);}
 }
