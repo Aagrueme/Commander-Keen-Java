@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class MapState extends State {
 
 	public MapState(GameStateManager gsm) {
-		super(gsm, 1);
+		super(gsm, 1, 1);
 	}
 
 	@Override

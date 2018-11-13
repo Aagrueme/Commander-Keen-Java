@@ -14,11 +14,10 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
 	
 	public static int width;
 	public static int height;
-	private Timer timer;
 
     GamePanel(){
         super();
-        setPreferredSize(new Dimension(Game.width,Game.height));
+        setPreferredSize(new Dimension(Game.WIDTH,Game.HEIGHT));
         addKeyListener(this);
         addMouseListener(this);
         addComponentListener(this);
@@ -29,24 +28,22 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
         width = getPreferredSize().width;
         height = getPreferredSize().height;
 
-        Game.gsm = new GameStateManager(GameStateManager.LOAD_STATE, this);
+        Game.gsm = new GameStateManager(GameStateManager.EDITOR_STATE, this);
     }
 
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setBackground((new Color(146,189,221)));
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         Game.gsm.render(g2d);
-        System.out.println(true);
     }
 
     @Override
     public void addNotify(){
         super.addNotify();
-        timer = new Timer(1000 / Game.FPS,this);
+        Timer timer = new Timer(1000 / Game.FPS, this);
         timer.start();
     }
 
@@ -97,7 +94,6 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
         if(e.getSource().equals(this)){
             width = getWidth();
             height = getHeight();
-            Game.gsm.windowResized();
         }
     }
 

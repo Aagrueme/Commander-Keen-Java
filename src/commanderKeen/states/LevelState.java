@@ -7,7 +7,7 @@ import java.awt.event.MouseEvent;
 public class LevelState extends State {
 
 	public LevelState(GameStateManager gsm) {
-		super(gsm, 1);
+		super(gsm, 1, 1);
 	}
 
 	@Override
