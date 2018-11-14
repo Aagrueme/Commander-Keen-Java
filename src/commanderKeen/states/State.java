@@ -12,8 +12,8 @@ public abstract class State {
 
     GameStateManager gsm;
 
-    private double scaleX;
-    private double scaleY;
+    protected double scaleX;
+    protected double scaleY;
 
     State(GameStateManager gsm, double scaleX, double scaleY) {
         this.gsm = gsm;
@@ -32,7 +32,7 @@ public abstract class State {
         VolatileImage img = gsm.panel.createVolatileImage((int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
         Graphics2D g2d = img.createGraphics();
         Color color = g2d.getColor();
-        g2d.setColor(new Color(168,168,168));
+        g2d.setColor(Game.BACKGROUND_COLOR);
         g2d.fillRect(0, 0, (int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
         g2d.setColor(color);
         render(g2d);

@@ -28,7 +28,7 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
         width = getPreferredSize().width;
         height = getPreferredSize().height;
 
-        Game.gsm = new GameStateManager(GameStateManager.MENU_STATE, this);
+        Game.gsm = new GameStateManager(GameStateManager.EDITOR_STATE, this);
     }
 
     @Override

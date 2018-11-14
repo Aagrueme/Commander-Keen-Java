@@ -16,8 +16,9 @@ import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
 public class Game extends JFrame implements ComponentListener {
-	
-	static final long serialVersionUID = 1L;
+
+    public static final Color BACKGROUND_COLOR = new Color(168, 168, 168);
+    static final long serialVersionUID = 1L;
 
 	public static final boolean originalSize = true;
 
@@ -50,8 +51,13 @@ public class Game extends JFrame implements ComponentListener {
 
     public static int SCALE = 3;
 
+    public static Game instance;
+
     public static Mouse mouse;
     public static GameStateManager gsm;
+
+
+    public GamePanel panel;
 
     Game(){
         super("Commander Keen");
@@ -60,7 +66,9 @@ public class Game extends JFrame implements ComponentListener {
         setLayout(new BorderLayout());
         addComponentListener(this);
 
-        getContentPane().add(new GamePanel(), BorderLayout.CENTER);
+        this.panel = new GamePanel();
+
+        getContentPane().add(this.panel, BorderLayout.CENTER);
         pack();
 
         setVisible(true);
@@ -68,7 +76,7 @@ public class Game extends JFrame implements ComponentListener {
 
     public static void main (String[] args){
         debug = ManagementFactory.getRuntimeMXBean().getInputArguments().toString().indexOf("-agentlib:jdwp") > 0;
-        new Game();
+        instance = new Game();
     }
 
     @Override
