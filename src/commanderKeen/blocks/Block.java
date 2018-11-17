@@ -2,6 +2,7 @@ package commanderKeen.blocks;
 
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
+import com.sun.istack.internal.NotNull;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,7 +14,9 @@ public abstract class Block implements Cloneable {
     private int x;
     private int y;
 
-    protected Animation animation;
+    private int animationState;
+
+    public Animation animation;
 
     private BufferedImage texture;
     private boolean newObject = false;
@@ -26,9 +29,11 @@ public abstract class Block implements Cloneable {
         }
     }
 
-    public Block(Animation animation){
+    public Block(@NotNull Animation animation, int state){
         this();
+        this.animationState = state;
         this.animation = animation;
+        animation.setState(state);
         setTexture(animation.getImage());
     }
 
@@ -54,6 +59,9 @@ public abstract class Block implements Cloneable {
             Block block = (Block)clone();
             block.setLocation(x, y);
             block.newObject = false;
+            block.animation = this.animation;
+            System.out.println(animation);
+            System.out.println(this);
             return block;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

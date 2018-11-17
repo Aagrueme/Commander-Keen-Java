@@ -1,5 +1,5 @@
 a a a a a a a a a a elt g glibber_left glibber glibber glibber glibber glibber_right g g
 blt brt a a a a a cby a a sl sr a a a a a a elb t
-blb brb a a a a cbb cbr cbb a sl sr b a a a a a a sign_top
-g g ert a a elt g g g g f sr cbg a a a trap sign_bottom a a
+blb brb a a a a cbb cbr cbb a sl sr b a a a a a a st
+g g ert a a elt g g g g f sr cbg a a a trap sb a a
 f f sr bfs bfs sl f f f f f sr s s s elt g g g g

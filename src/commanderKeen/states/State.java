@@ -5,6 +5,7 @@ import commanderKeen.main.Game;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.VolatileImage;
 
@@ -43,4 +44,5 @@ public abstract class State {
     public abstract void keyReleased(KeyEvent e, int k);
     public abstract void mousePressed(MouseEvent e);
     public abstract void mouseReleased(MouseEvent e);
+    public abstract void mouseWheelMoved(MouseWheelEvent e);
 }

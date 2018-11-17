@@ -1,11 +1,13 @@
 package commanderKeen.states;
 
+import commanderKeen.main.Game;
 import commanderKeen.main.GamePanel;
 
 import javax.swing.*;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.image.VolatileImage;
 
 public class GameStateManager {
@@ -88,5 +90,8 @@ public class GameStateManager {
     }
     public void mouseReleased(MouseEvent e){
         states[state].mouseReleased(e);
+    }
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        states[state].mouseWheelMoved(e);
     }
 }

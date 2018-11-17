@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b2194a7c-13ef-49a5-abcb-d69a21523de7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="b2194a7c-13ef-49a5-abcb-d69a21523de7" name="Default Changelist" comment="Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Commander-Keen-Java.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Commander-Keen-Java.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/commanderKeen/levels/menu_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/res/commanderKeen/levels/menu_level.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/Block.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/Block.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSignShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSignShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockTrapShow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockTrapShow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/levels/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/levels/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/levels/MenuLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/levels/MenuLevel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/main/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/main/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/EditorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/EditorState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/GameStateManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/GameStateManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/LevelState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/LevelState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/LoadState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/LoadState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/MapState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/MapState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/MenuState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/MenuState.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/commanderKeen/states/State.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/states/State.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/Animation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/commanderKeen/util/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/Drawing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/ImageLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/ResourceLoader.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/Spritesheet.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/commanderKeen/util/Timer.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -36,37 +34,44 @@
     <session id="-2010932325">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="6" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.53" value="1" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.60" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.84" value="1" />
+          <entry key="project.open.time.96" value="1" />
+          <entry key="project.opened" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="14" />
-          <entry key="png" value="3" />
-          <entry key="txt" value="1" />
+          <entry key="class" value="2" />
+          <entry key="java" value="56" />
+          <entry key="png" value="4" />
+          <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="3" />
-          <entry key="JAVA" value="14" />
-          <entry key="PLAIN_TEXT" value="1" />
+          <entry key="CLASS" value="2" />
+          <entry key="Image" value="4" />
+          <entry key="JAVA" value="56" />
+          <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="539" />
-          <entry key="txt" value="21" />
+          <entry key="java" value="1766" />
+          <entry key="txt" value="27" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="539" />
-          <entry key="PLAIN_TEXT" value="21" />
+          <entry key="JAVA" value="1766" />
+          <entry key="PLAIN_TEXT" value="27" />
         </counts>
       </usages-collector>
     </session>
@@ -74,28 +79,19 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/EditorState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="89">
+              <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/Blocks.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="16" column="137" selection-start-line="16" selection-start-column="137" selection-end-line="16" selection-end-column="137" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/commanderKeen/levels/MenuLevel.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="28" column="41" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockBearShow.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state>
+              <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -104,15 +100,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/commanderKeen/assets/menu/menuBackground -all.png">
-          <provider selected="true" editor-type-id="images" />
+        <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockTrapShow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="170" selection-start-line="11" selection-start-column="170" selection-end-line="11" selection-end-column="170" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="165">
-              <caret line="11" column="167" selection-start-line="11" selection-start-column="167" selection-end-line="11" selection-end-column="167" />
+              <caret line="11" column="171" selection-start-line="11" selection-start-column="171" selection-end-line="11" selection-end-column="171" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -120,37 +123,33 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Java/Libraries/Game Utils/Game Utils Library -sources.zip!/aagrueme/com/github/api/Animation.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/Block.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="31" column="69" lean-forward="true" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+            <state relative-caret-position="179">
+              <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
               <folding>
-                <element signature="e#950#951#0" expanded="true" />
-                <element signature="e#1007#1008#0" expanded="true" />
-                <element signature="e#1139#1140#0" expanded="true" />
-                <element signature="e#1165#1166#0" expanded="true" />
-                <element signature="e#1198#1199#0" expanded="true" />
-                <element signature="e#1224#1225#0" expanded="true" />
+                <element signature="e#2033#2034#0" expanded="true" />
+                <element signature="e#2083#2084#0" expanded="true" />
+                <element signature="e#2138#2139#0" expanded="true" />
+                <element signature="e#2188#2189#0" expanded="true" />
+                <element signature="e#2224#2225#0" expanded="true" />
+                <element signature="e#2256#2257#0" expanded="true" />
+                <element signature="e#2302#2303#0" expanded="true" />
+                <element signature="e#2356#2357#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/commanderKeen/levels/menu_level.txt">
+        <entry file="file://$PROJECT_DIR$/src/commanderKeen/levels/Level.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" column="76" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
+            <state relative-caret-position="354">
+              <caret line="89" selection-start-line="89" selection-end-line="89" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -158,8 +157,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="14" selection-end-column="35" />
+            <state relative-caret-position="105">
+              <caret line="12" column="184" selection-start-line="12" selection-start-column="184" selection-end-line="12" selection-end-column="184" />
             </state>
           </provider>
         </entry>
@@ -173,22 +172,49 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>BRIGHT</find>
+      <find>update</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>DARK</replace>
+    </replaceStrings>
+  </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Aagrueme &lt;metzneraaron05@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/blocks/BlockBasicGround.java" />
-        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/Blocks.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockBottleShow.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockColorBlockShow.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockBearShow.java" />
-        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/levels/Level.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/levels/MenuLevel.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSignShow.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java" />
         <option value="$PROJECT_DIR$/res/commanderKeen/levels/menu_level.txt" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/GameStateManager.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/State.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/MenuState.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/MapState.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/LoadState.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/LevelState.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/main/GamePanel.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/Blocks.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/main/Game.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/states/EditorState.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockTrapShow.java" />
         <option value="$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java" />
+        <option value="$PROJECT_DIR$/src/commanderKeen/blocks/Block.java" />
       </list>
     </option>
   </component>
@@ -199,16 +225,16 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="y" value="25" />
-    <option name="width" value="639" />
-    <option name="height" value="455" />
+    <option name="x" value="-7" />
+    <option name="width" value="974" />
+    <option name="height" value="1167" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -226,20 +252,6 @@
               <item name="Commander-Keen-Java" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="commanderKeen" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Commander-Keen-Java" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="commanderKeen" type="462c0819:PsiDirectoryNode" />
-              <item name="menu" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Commander-Keen-Java" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="commanderKeen" type="462c0819:PsiDirectoryNode" />
-              <item name="levels" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
@@ -296,13 +308,6 @@
               <item name="Commander-Keen-Java" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="commanderKeen" type="462c0819:PsiDirectoryNode" />
-              <item name="levels" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Commander-Keen-Java" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="commanderKeen" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -316,29 +321,10 @@
               <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Game utils library" type="70bed36:NamedLibraryElementNode" />
-            </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Game utils library" type="70bed36:NamedLibraryElementNode" />
-              <item name="Game utils library.jar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Commander-Keen-Java" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Game utils library" type="70bed36:NamedLibraryElementNode" />
-              <item name="Game utils library.jar" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -347,7 +333,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541844614664" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Java/Libraries/Game Utils/Game Utils Library -sources.zip!/" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Java/Projects/Library compiler" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -393,17 +379,30 @@
       <workItem from="1541837448801" duration="564000" />
       <workItem from="1541838572419" duration="2424000" />
       <workItem from="1541934368258" duration="1740000" />
+      <workItem from="1542004158878" duration="175000" />
+      <workItem from="1542206661799" duration="4915000" />
+      <workItem from="1542224265455" duration="1945000" />
+      <workItem from="1542287352790" duration="2506000" />
+      <workItem from="1542466639938" duration="954000" />
     </task>
+    <task id="LOCAL-00001" summary="Update">
+      <created>1542004221054</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1542004221054</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4728000" />
+    <option name="totallyTimeSpent" value="15223000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1293" height="743" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2574178" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28067362" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -414,7 +413,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32952693" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39967373" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39967373" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -440,14 +439,11 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/commanderKeen/main/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/BlockBasicGround.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -478,12 +474,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/Blocks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="16" column="137" selection-start-line="16" selection-start-column="137" selection-end-line="16" selection-end-column="137" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/res/commanderKeen/textures/blocks/animations/fire_sprite.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/commanderKeen/textures/blocks/animations/spike_sprite.png">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockBearShow.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -498,51 +493,184 @@
     <entry file="file://$PROJECT_DIR$/res/commanderKeen/assets/menu/menuBackground -all.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java">
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/BlockNull.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="14" selection-end-column="35" />
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/res/commanderKeen/textures/blocks/animations/fire_sprite.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/commanderKeen/textures/blocks/animations/spike_sprite.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java">
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSignShow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="21" column="76" selection-start-line="21" selection-start-column="76" selection-end-line="21" selection-end-column="76" />
+        <state relative-caret-position="390">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#455#456#0" expanded="true" />
+            <element signature="e#500#501#0" expanded="true" />
+            <element signature="e#699#700#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/commanderKeen/levels/MenuLevel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="28" column="41" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="41" />
+        <state relative-caret-position="239">
+          <caret line="32" column="56" selection-start-line="32" selection-start-column="56" selection-end-line="32" selection-end-column="56" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/commanderKeen/levels/menu_level.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
+          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="45" column="53" selection-start-line="45" selection-start-column="53" selection-end-line="45" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/GameStateManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="94" column="37" selection-start-line="94" selection-start-column="37" selection-end-line="94" selection-end-column="37" />
+          <folding>
+            <element signature="e#2380#2381#0" expanded="true" />
+            <element signature="e#2426#2427#0" expanded="true" />
+            <element signature="e#2564#2565#0" expanded="true" />
+            <element signature="e#2607#2608#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/MenuState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="122" column="8" selection-start-line="122" selection-start-column="8" selection-end-line="122" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/MapState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/LoadState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="44" column="8" selection-start-line="44" selection-start-column="8" selection-end-line="44" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/LevelState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/main/GamePanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="22" column="35" lean-forward="true" selection-start-line="22" selection-start-column="35" selection-end-line="22" selection-end-column="35" />
+          <folding>
+            <element signature="e#1969#1970#0" expanded="true" />
+            <element signature="e#2009#2010#0" expanded="true" />
+            <element signature="e#2179#2180#0" expanded="true" />
+            <element signature="e#2222#2223#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="72" column="15" selection-start-line="72" selection-start-column="15" selection-end-line="72" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/ShowBlocks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="59" selection-start-line="26" selection-start-column="59" selection-end-line="26" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/commanderKeen/textures/blocks/animations/trap_sprite.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar://$USER_HOME$/Eigene Programme/jdk1.8.0_181/src.zip!/java/awt/image/BufferedImage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="1201" selection-start-line="1201" selection-end-line="1201" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Eigene Programme/jdk1.8.0_181/jre/lib/rt.jar!/sun/awt/image/ByteInterleavedRaster.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Java/Libraries/Game Utils/Game utils library.jar!/aagrueme/com/github/api/Spritesheet.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="63" column="52" lean-forward="true" selection-start-line="63" selection-start-column="52" selection-end-line="63" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Java/Libraries/Game Utils/Game Utils Library -sources.zip!/aagrueme/com/github/api/Spritesheet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="46" column="31" lean-forward="true" selection-start-line="46" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/Java/Libraries/Game Utils/Game Utils Library -sources.zip!/aagrueme/com/github/api/Animation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="31" column="69" lean-forward="true" selection-start-line="31" selection-start-column="69" selection-end-line="31" selection-end-column="69" />
+        <state relative-caret-position="119">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/states/EditorState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="78" column="26" selection-start-line="78" selection-start-column="26" selection-end-line="78" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/Blocks.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="2" lean-forward="true" selection-start-column="2" selection-end-column="2" />
           <folding>
-            <element signature="e#950#951#0" expanded="true" />
-            <element signature="e#1007#1008#0" expanded="true" />
-            <element signature="e#1139#1140#0" expanded="true" />
-            <element signature="e#1165#1166#0" expanded="true" />
-            <element signature="e#1198#1199#0" expanded="true" />
-            <element signature="e#1224#1225#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockFireShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="12" column="184" selection-start-line="12" selection-start-column="184" selection-end-line="12" selection-end-column="184" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockTrapShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="170" selection-start-line="11" selection-start-column="170" selection-end-line="11" selection-end-column="170" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -550,9 +678,36 @@
     <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/showBlocks/BlockSpikeShow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
-          <caret line="11" column="167" selection-start-line="11" selection-start-column="167" selection-end-line="11" selection-end-column="167" />
+          <caret line="11" column="171" selection-start-line="11" selection-start-column="171" selection-end-line="11" selection-end-column="171" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/levels/Level.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="89" selection-start-line="89" selection-end-line="89" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/commanderKeen/blocks/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="60" column="36" lean-forward="true" selection-start-line="60" selection-start-column="36" selection-end-line="60" selection-end-column="36" />
+          <folding>
+            <element signature="e#2033#2034#0" expanded="true" />
+            <element signature="e#2083#2084#0" expanded="true" />
+            <element signature="e#2138#2139#0" expanded="true" />
+            <element signature="e#2188#2189#0" expanded="true" />
+            <element signature="e#2224#2225#0" expanded="true" />
+            <element signature="e#2256#2257#0" expanded="true" />
+            <element signature="e#2302#2303#0" expanded="true" />
+            <element signature="e#2356#2357#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -614,7 +769,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

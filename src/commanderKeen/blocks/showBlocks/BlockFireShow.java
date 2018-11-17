@@ -10,8 +10,7 @@ import java.awt.image.BufferedImage;
 public class BlockFireShow extends Block {
 
     public BlockFireShow(Variation variation){
-        super(new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/fire_sprite.png"), 1, 3, 16, 16), 1, 4, 71));
-        animation.setState(variation.state);
+        super(new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/fire_sprite.png"), 1, 3, 16, 16), 1, 3, 71), variation.state);
         setTexture(animation.getImage());
         animation.startAnimation();
     }

@@ -1,5 +1,6 @@
 package commanderKeen.main;
 
+import commanderKeen.blocks.Blocks;
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 

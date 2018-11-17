@@ -3,6 +3,7 @@ package commanderKeen.states;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public class LevelState extends State {
 
@@ -37,6 +38,11 @@ public class LevelState extends State {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
 
 	}
 }
