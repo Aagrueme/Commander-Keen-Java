@@ -45,4 +45,14 @@ public class LoadState extends State {
 
 	}
 
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
+	}
+
 }

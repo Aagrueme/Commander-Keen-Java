@@ -10,6 +10,7 @@ public class BlockBasicGround extends Block {
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/basic_ground.png"), 0, 9, 16, 16);
 
     BlockBasicGround(Variation variation){
+        super("block_basic_ground_" + variation.toString().toLowerCase());
         setTexture(variation.texture);
     }
 

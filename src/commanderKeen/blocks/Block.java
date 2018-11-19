@@ -3,6 +3,7 @@ package commanderKeen.blocks;
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
 import com.sun.istack.internal.NotNull;
+import commanderKeen.registry.GameRegistry;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,6 +14,7 @@ public abstract class Block implements Cloneable {
 
     private int x;
     private int y;
+    private String registryName;
 
     private int animationState;
 
@@ -29,16 +31,18 @@ public abstract class Block implements Cloneable {
         }
     }
 
-    public Block(@NotNull Animation animation, int state){
-        this();
+    public Block(String registryName, Animation animation, int state){
+        this(registryName);
         this.animationState = state;
         this.animation = animation;
         animation.setState(state);
         setTexture(animation.getImage());
     }
 
-    public Block(){
+    public Block(String registryName){
+        this.registryName = registryName;
         Blocks.blocks.add(this);
+        GameRegistry.registerBlock(this);
     }
 
     private void setLocation(int x, int y){
@@ -58,10 +62,11 @@ public abstract class Block implements Cloneable {
         try {
             Block block = (Block)clone();
             block.setLocation(x, y);
-            block.newObject = false;
+            block.newObject = true;
             block.animation = this.animation;
-            System.out.println(animation);
-            System.out.println(this);
+            if(animation != null) {
+                block.animation.setState(animationState);
+            }
             return block;
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
@@ -90,6 +95,10 @@ public abstract class Block implements Cloneable {
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName();
+        return registryName;
+    }
+
+    public String getRegistryName() {
+        return registryName;
     }
 }

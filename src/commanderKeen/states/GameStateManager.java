@@ -60,8 +60,8 @@ public class GameStateManager {
         this.state = state;
         this.panel = panel;
         states = new State[5];
-        //mes = new MenuState(this);
-        es = new EditorState(this);
+        mes = new MenuState(this);
+        //es = new EditorState(this);
         states[0] = los;
         states[1] = mes;
         states[2] = mas;
@@ -93,5 +93,11 @@ public class GameStateManager {
     }
     public void mouseWheelMoved(MouseWheelEvent e) {
         states[state].mouseWheelMoved(e);
+    }
+    public void mouseMoved(MouseEvent e) {
+        states[state].mouseMoved(e);
+    }
+    public void mouseDragged(MouseEvent e) {
+        states[state].mouseDragged(e);
     }
 }

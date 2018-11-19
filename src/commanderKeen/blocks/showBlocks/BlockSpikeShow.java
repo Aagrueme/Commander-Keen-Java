@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 
 public class BlockSpikeShow extends Block {
     public BlockSpikeShow(){
-        super(new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/spike_sprite.png"), 0, 3, 16, 16), 0, 4, 71), 0);
+        super("block_spike_show", new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/spike_sprite.png"), 0, 3, 16, 16), 0, 4, 71), 0);
         animation.startAnimation();
     }
 }

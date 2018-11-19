@@ -11,6 +11,7 @@ public class BlockSignShow extends Block {
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/sign.png"), 0, 2, 16, 16);
 
     public BlockSignShow(Variation variation){
+        super("block_sign_show_" + variation.toString().toLowerCase());
         setTexture(variation.texture);
     }
 
