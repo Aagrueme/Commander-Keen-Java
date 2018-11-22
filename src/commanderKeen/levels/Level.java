@@ -5,35 +5,39 @@ import com.sun.istack.internal.NotNull;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.main.Game;
+import commanderKeen.registry.GameRegistry;
 import commanderKeen.util.LevelSlot;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.awt.geom.AffineTransform;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public abstract class Level {
 
-    //                  x y
     protected LevelSlot[][] level;
 
     public ArrayList<Block> blocks;
     public int width;
     public int height;
-    private int x;
-    private int y;
+    private double x;
+    private double y;
+
+    private boolean grid;
 
     public Level(@NotNull LevelSlot[][] blocks){
         this(blocks, 0, 0);
     }
 
-    public Level(@NotNull LevelSlot[][] blocks, int x, int y){
+    public Level(@NotNull LevelSlot[][] blocks, double x, double y){
         this.level = blocks;
         this.width = blocks.length;
         this.height = blocks[0].length;
         this.x = x;
         this.y = y;
+        this.grid = Game.debug;
     }
 
     @Override
@@ -41,14 +45,18 @@ public abstract class Level {
         return this.getClass().getSimpleName();
     }
 
-    public void init(){
+    private void init(){
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 level[x][y] = new LevelSlot();
+                Block block = blocks.get(y * width + x);
                 try{
-                    level[x][y].setBlock(blocks.get(y * width + x).createBlock(x * 16 + this.x, y * 16 + this.y));
-                } catch (IndexOutOfBoundsException e){
-                }
+                    if(block.isNewObject()){
+                        level[x][y].setBlock(block);
+                    }else{
+                        level[x][y].setBlock(block.createBlock(x * 16, y * 16));
+                    }
+                } catch (IndexOutOfBoundsException ignored){}
             }
         }
     }
@@ -58,27 +66,35 @@ public abstract class Level {
             for (int x = 0; x < width; x++) {
                 try {
                     level[x][y].getBlock().update();
-                } catch (NullPointerException e) {
-                }
+                } catch (NullPointerException ignored) {}
             }
         }
     }
 
     public void render(Graphics2D g2d) {
+        g2d.setTransform(AffineTransform.getTranslateInstance(x, y));
         g2d.setColor(Color.white);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 try {
                     level[x][y].getBlock().render(g2d, x * 16, y * 16);
-                }catch (NullPointerException e) {
-                }
-                if(Game.debug){
-                    g2d.drawRect(x * 16 + this.x, y * 16 + this.y, 16, 16);
+                } catch (NullPointerException ignored) {}
+                if(grid){
+                    int width = 16;
+                    int height = 16;
+                    if(x == this.width -1){
+                        width --;
+                    }
+
+                    if(y == this.height -1){
+                        height --;
+                    }
+                    g2d.drawRect(x * 16, y * 16, width, height);
                 }
             }
         }
+        g2d.setTransform(AffineTransform.getTranslateInstance(0, 0));
     }
-
 
     public void setBlocks(ArrayList<Block> blocks) {
         if(blocks.size() != width * height){
@@ -91,8 +107,16 @@ public abstract class Level {
         init();
     }
 
-    protected ArrayList<Block> convertFileToLevelData(String path, LevelBlockShortcut pBlocks[]){
-        ArrayList<Block> blocks = new ArrayList<>();
+    protected ArrayList<Block> convertFileToLevelData(String path) throws IOException {
+        JSONArray array = new JSONObject(new BufferedReader(new InputStreamReader(ResourceLoader.load(path))).readLine()).getJSONArray("level");
+        ArrayList<Block> list = new ArrayList<>();
+        for (int i = 0; i < array.length(); i++) {
+            Block block = GameRegistry.getBlock(array.getString(i));
+            list.add(i, block);
+        }
+        return list;
+
+        /*ArrayList<Block> blocks = new ArrayList<>();
         try {
             String s;
             BufferedReader reader = new BufferedReader(new InputStreamReader(ResourceLoader.load(path)));
@@ -101,7 +125,7 @@ public abstract class Level {
                 for (String s1 : blockStrings) {
                     boolean b = true;
                     if(b) {
-                        for (LevelBlockShortcut shortcut : pBlocks) {
+                        for (BlockShortcut shortcut : pBlocks) {
                             if (s1.equalsIgnoreCase(shortcut.id) && b) {
                                 blocks.add(shortcut.actualBlock);
                                 b = false;
@@ -117,23 +141,30 @@ public abstract class Level {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return blocks;
+        return blocks;*/
     }
 
-    protected class LevelBlockShortcut{
-        public Block actualBlock;
-        public String id;
-        protected LevelBlockShortcut(String id, Block actualBlock){
-            this.id = id;
-            this.actualBlock = actualBlock;
-        }
-    }
-
-    public void setX(int x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public void setY(int y) {
+    public void setY(double y) {
         this.y = y;
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setGrid(boolean grid) {
+        this.grid = grid;
+    }
+
+    public boolean isGridEnabled() {
+        return grid;
     }
 }

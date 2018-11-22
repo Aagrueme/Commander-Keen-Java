@@ -7,18 +7,17 @@ import commanderKeen.blocks.Block;
 
 import java.awt.image.BufferedImage;
 
-public class BlockFireShow extends Block {
+public class BlockTentacleShow extends Block {
 
-    public BlockFireShow(Variation variation){
-        super("block_fire_show_" + variation.toString().toLowerCase(), new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/fire_sprite.png"), 1, 3, 16, 16), 1, 3, 71), variation.state);
-        setTexture(animation.getImage());
+    public BlockTentacleShow(Variation variation){
+        super("block_tentacle_show_" + variation.toString().toLowerCase(), new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/tentacle_sprite.png"), 2, 3, 16, 16), 2, 3, 70), variation.state);
         animation.startAnimation();
     }
 
     public enum Variation{
-        DARK(0),
-        BRIGHT(1);
-
+        Left(0),
+        Top(1),
+        Right(2);
         private int state;
 
         Variation(int state){

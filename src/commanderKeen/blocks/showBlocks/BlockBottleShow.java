@@ -11,6 +11,7 @@ public class BlockBottleShow extends Block {
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/bottle.png"), 0, 4, 16, 16);
 
     public BlockBottleShow(Variation variation){
+        super("block_bottle_"+variation.toString().toLowerCase());
         setTexture(variation.texture);
     }
 

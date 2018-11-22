@@ -8,7 +8,7 @@ import javax.swing.*;
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 
-public class GamePanel extends JPanel implements ComponentListener,ActionListener,KeyListener,MouseListener {
+public class GamePanel extends JPanel implements MouseMotionListener,ComponentListener,ActionListener,KeyListener,MouseListener,MouseWheelListener {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -21,6 +21,8 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
         addKeyListener(this);
         addMouseListener(this);
         addComponentListener(this);
+        addMouseWheelListener(this);
+        addMouseMotionListener(this);
         setFocusable(true);
         requestFocus();
 
@@ -84,6 +86,11 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
     }
 
     @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        Game.gsm.mouseWheelMoved(e);
+    }
+
+    @Override
     public void mouseEntered(MouseEvent e) {}
 
     @Override
@@ -110,5 +117,15 @@ public class GamePanel extends JPanel implements ComponentListener,ActionListene
     @Override
     public void componentHidden(ComponentEvent e) {
 
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        Game.gsm.mouseDragged(e);
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        Game.gsm.mouseMoved(e);
     }
 }

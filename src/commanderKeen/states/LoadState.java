@@ -3,6 +3,7 @@ package commanderKeen.states;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 
 public class LoadState extends State {
 
@@ -37,6 +38,21 @@ public class LoadState extends State {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+
 	}
 
 }

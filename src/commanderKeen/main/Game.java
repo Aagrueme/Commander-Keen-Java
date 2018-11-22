@@ -1,5 +1,7 @@
 package commanderKeen.main;
 
+import commanderKeen.blocks.Block;
+import commanderKeen.blocks.Blocks;
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 
@@ -65,6 +67,9 @@ public class Game extends JFrame implements ComponentListener {
         setSize(WIDTH, HEIGHT);
         setLayout(new BorderLayout());
         addComponentListener(this);
+
+        //init blocks
+        Blocks.BLOCK_NULL.getRegistryName();
 
         this.panel = new GamePanel();
 

@@ -8,6 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Game Utils Library -sources" level="project" />
+    <orderEntry type="library" name="Game utils library" level="project" />
+    <orderEntry type="library" name="org.codeartisans:org.json:20161124" level="project" />
   </component>
 </module>

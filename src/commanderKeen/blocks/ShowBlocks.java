@@ -17,7 +17,16 @@ public class ShowBlocks {
     public final BlockColorBlockShow BLOCK_COLOR_BLOCK_SHOW_GREEN = new BlockColorBlockShow(BlockColorBlockShow.Variation.GREEN);
     public final BlockColorBlockShow BLOCK_COLOR_BLOCK_SHOW_YELLOW = new BlockColorBlockShow(BlockColorBlockShow.Variation.YELLOW);
 
+    public final BlockSignShow BLOCK_SIGN_SHOW_BOTTOM = new BlockSignShow(BlockSignShow.Variation.BOTTOM);
+    public final BlockSignShow BLOCK_SIGN_SHOW_TOP = new BlockSignShow(BlockSignShow.Variation.TOP);
+
     public final BlockBearShow BLOCK_BEAR_SHOW = new BlockBearShow();
 
     public final BlockSpikeShow BLOCK_SPIKE_SHOW = new BlockSpikeShow();
+
+    public final BlockTrapShow BLOCK_TRAP_SHOW = new BlockTrapShow();
+
+    public final BlockTentacleShow BLOCK_TENTACLE_SHOW_LEFT = new BlockTentacleShow(BlockTentacleShow.Variation.Left);
+    public final BlockTentacleShow BLOCK_TENTACLE_SHOW_TOP = new BlockTentacleShow(BlockTentacleShow.Variation.Top);
+    public final BlockTentacleShow BLOCK_TENTACLE_SHOW_RIGHT = new BlockTentacleShow(BlockTentacleShow.Variation.Right);
 }
