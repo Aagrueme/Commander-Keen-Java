@@ -30,7 +30,7 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
         width = getPreferredSize().width;
         height = getPreferredSize().height;
 
-        Game.gsm = new GameStateManager(GameStateManager.MENU_STATE, this);
+        Game.gsm = new GameStateManager(GameStateManager.EDITOR_STATE, this);
     }
 
     @Override

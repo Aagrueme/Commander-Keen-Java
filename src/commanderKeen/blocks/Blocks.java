@@ -17,6 +17,15 @@ public class Blocks {
     public static final BlockBasicGround BLOCK_BASIC_GROUND_EDGE_RIGHT_BOTTOM = new BlockBasicGround(BlockBasicGround.Variation.EdgeRightBottom);
     public static final BlockBasicGround BLOCK_BASIC_GROUND_EDGE_RIGHT_TOP = new BlockBasicGround(BlockBasicGround.Variation.EdgeRightTop);
     public static final BlockBasicGround BLOCK_BASIC_GROUND_EDGE_LEFT_TOP = new BlockBasicGround(BlockBasicGround.Variation.EdgeLeftTop);
+
+
+    static{
+        for (BlockMap.Variation variation:BlockMap.Variation.values()) {
+            new BlockMap(variation);
+        }
+    }
+
+
     public static final BlockAir BLOCK_AIR = new BlockAir();
     public static final BlockNull BLOCK_NULL = new BlockNull();
 }

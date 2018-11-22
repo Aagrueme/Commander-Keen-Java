@@ -15,11 +15,8 @@ public abstract class Block implements Cloneable {
     private int x;
     private int y;
     private String registryName;
-
     private int animationState;
-
     public Animation animation;
-
     private BufferedImage texture;
     private boolean newObject = false;
 

@@ -2,7 +2,7 @@ package commanderKeen.states;
 
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
-import commanderKeen.editor.EditorLevel;
+import commanderKeen.levels.EditorLevel;
 import commanderKeen.main.Game;
 import commanderKeen.main.GamePanel;
 
@@ -24,7 +24,7 @@ public class EditorState extends State {
     private Block selectedBlock = Blocks.BLOCK_BASIC_GROUND_BOTTOM;
 
     private int blocksBoxY = 0;
-    private int selected = 16;
+    private int selected = Blocks.blocks.indexOf(selectedBlock);
 
     EditorState(GameStateManager gsm) {
         super(gsm, GamePanel.width / 320d, GamePanel.height / 200d);
@@ -35,6 +35,9 @@ public class EditorState extends State {
         for (boolean valid = false;!valid;){
             valid = true;
             String input = JOptionPane.showInputDialog(gsm.panel, "Enter wished width!", "Width", JOptionPane.INFORMATION_MESSAGE);
+            if(input == null){
+                System.exit(0);
+            }
             try {
                 levelWidth = Integer.parseInt(input);
             }catch (NumberFormatException e){
@@ -45,6 +48,9 @@ public class EditorState extends State {
         for (boolean valid = false;!valid;){
             valid = true;
             String input = JOptionPane.showInputDialog(gsm.panel, "Enter wished height!", "Height", JOptionPane.INFORMATION_MESSAGE);
+            if(input == null){
+                System.exit(0);
+            }
             try {
                 levelHeight = Integer.parseInt(input);
             }catch (NumberFormatException e){
@@ -129,11 +135,15 @@ public class EditorState extends State {
             if (e.getButton() == MouseEvent.BUTTON1) {
                 int blockX = (int)((e.getX() / scaleX - level.getX()) / 16);
                 int blockY = (int)((e.getY() / scaleY - level.getY()) / 16);
-                level.setBlock(selectedBlock, blockX, blockY);
+                if(!((blockX > level.width) || (blockY >= level.height))) {
+                    level.setBlock(selectedBlock, blockX, blockY);
+                }
             } else if (e.getButton() == MouseEvent.BUTTON3) {
                 int blockX = (int)((e.getX() / scaleX - level.getX()) / 16);
                 int blockY = (int)((e.getY() / scaleY - level.getY()) / 16);
-                level.setBlock(Blocks.BLOCK_AIR, blockX, blockY);
+                if(!((blockX > level.width) || (blockY >= level.height))) {
+                    level.setBlock(Blocks.BLOCK_AIR, blockX, blockY);
+                }
             }else if(e.getButton() == MouseEvent.BUTTON2) {
                 mouseWheelPressed = false;
             }
@@ -157,7 +167,7 @@ public class EditorState extends State {
                     blocksBoxY += 5;
                 }
             } else if (e.getWheelRotation() > 0) {
-                if (blocksBoxY > 150 + 26 - (10 + (blocks.length / 2 * 16 + blocks.length / 2 * 10)))
+                if (abs(blocksBoxY) <= (blocks.length /2 * 26) - 190)
                     blocksBoxY -= 5;
             }
         }

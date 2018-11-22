@@ -2,9 +2,7 @@ package commanderKeen.levels;
 
 import commanderKeen.util.LevelSlot;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.Serializable;
 
 public class MenuLevel extends Level {
 
@@ -12,7 +10,7 @@ public class MenuLevel extends Level {
         super(new LevelSlot[20][5], 0, 8 * 16);
 
         try {
-            setBlocks(convertFileToLevelData("/home/aagrueme/GitHub/Commander-Keen-Java/res/commanderKeen/levels/menu_level.json"/*, new BlockShortcut[]{
+            setBlocks(convertFileToLevelData("commanderKeen/levels/menu_level.json"/*, new BlockShortcut[]{
                     new BlockShortcut("g", Blocks.BLOCK_BASIC_GROUND_BOTTOM),
                     new BlockShortcut("a", Blocks.BLOCK_AIR),
                     new BlockShortcut("sr", Blocks.BLOCK_BASIC_GROUND_SIDE_RIGHT),
@@ -38,8 +36,7 @@ public class MenuLevel extends Level {
                     new BlockShortcut("cbr", Blocks.ShowBlocks.BLOCK_COLOR_BLOCK_SHOW_RED),
                     new BlockShortcut("cby", Blocks.ShowBlocks.BLOCK_COLOR_BLOCK_SHOW_YELLOW)
             }*/));
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
 
     }

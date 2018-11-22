@@ -1,12 +1,14 @@
-package commanderKeen.editor;
+package commanderKeen.levels;
 
 import commanderKeen.blocks.Block;
 import commanderKeen.levels.Level;
-import commanderKeen.registry.GameRegistry;
 import commanderKeen.util.LevelSlot;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,18 +27,27 @@ public class EditorLevel extends Level {
         blocks.set(y * width + x, block);
     }
 
-
     public void save(){
         JSONObject json = new JSONObject();
-        String blockNames[] = new String[blocks.size()];
+        String names[] = new String[blocks.size()];
         for (int i = 0; i < blocks.size(); i++) {
-            Block block = blocks.get(i);
-            blockNames[i] = block.getRegistryName();
+            names[i] = blocks.get(i).getRegistryName();
         }
-        JSONArray array = new JSONArray(blockNames);
+        JSONArray array = new JSONArray(names);
         json.put("level", array);
         try {
-            FileWriter fw = new FileWriter(new File("/home/aagrueme/GitHub/Commander-Keen-Java/res/commanderKeen/levels/menu_level.json"));
+            File file = null;
+            for (boolean valid = false;!valid;){
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
+                fileChooser.showOpenDialog(null);
+                file = fileChooser.getSelectedFile();
+                if (file.exists()) {
+                    valid = true;
+                }
+            }
+            FileWriter fw = new FileWriter(file);
             fw.write(json.toString());
             fw.close();
         } catch (IOException e) {

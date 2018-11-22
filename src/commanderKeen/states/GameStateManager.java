@@ -1,6 +1,5 @@
 package commanderKeen.states;
 
-import commanderKeen.main.Game;
 import commanderKeen.main.GamePanel;
 
 import javax.swing.*;
@@ -8,7 +7,6 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import java.awt.image.VolatileImage;
 
 public class GameStateManager {
     public static final int LOAD_STATE = 0;
@@ -60,8 +58,14 @@ public class GameStateManager {
         this.state = state;
         this.panel = panel;
         states = new State[5];
-        mes = new MenuState(this);
-        //es = new EditorState(this);
+        switch (state){
+            case EDITOR_STATE:
+                es = new EditorState(this);
+                break;
+            case MENU_STATE:
+                mes = new MenuState(this);
+                break;
+        }
         states[0] = los;
         states[1] = mes;
         states[2] = mas;
@@ -72,12 +76,12 @@ public class GameStateManager {
     public void update(){
         try {
             states[state].update();
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
     public void render(Graphics2D g2d){
         try {
             states[state].renderState(g2d);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
     }
     public void keyPressed(KeyEvent e , int k){
         states[state].keyPressed(e, k);

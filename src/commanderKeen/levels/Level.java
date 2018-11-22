@@ -3,7 +3,6 @@ package commanderKeen.levels;
 import aagrueme.com.github.api.ResourceLoader;
 import com.sun.istack.internal.NotNull;
 import commanderKeen.blocks.Block;
-import commanderKeen.blocks.BlockShortcut;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.main.Game;
 import commanderKeen.registry.GameRegistry;
@@ -109,13 +108,13 @@ public abstract class Level {
     }
 
     protected ArrayList<Block> convertFileToLevelData(String path) throws IOException {
-        JSONObject json = new JSONObject(new BufferedReader(new FileReader(new File(path))).readLine());
-        JSONArray blockNamesJson = json.getJSONArray("level");
-        ArrayList<Block> blocks = new ArrayList<>();
-        for (int i = 0; i < blockNamesJson.length(); i++) {
-            blocks.add(i, GameRegistry.getBlock((String)blockNamesJson.get(i)));
+        JSONArray array = new JSONObject(new BufferedReader(new InputStreamReader(ResourceLoader.load(path))).readLine()).getJSONArray("level");
+        ArrayList<Block> list = new ArrayList<>();
+        for (int i = 0; i < array.length(); i++) {
+            Block block = GameRegistry.getBlock(array.getString(i));
+            list.add(i, block);
         }
-        return blocks;
+        return list;
 
         /*ArrayList<Block> blocks = new ArrayList<>();
         try {
