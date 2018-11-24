@@ -19,6 +19,7 @@ public abstract class Block implements Cloneable {
     public Animation animation;
     private BufferedImage texture;
     private boolean newObject = false;
+    private boolean solid = true;
 
     {
         try {
@@ -26,6 +27,16 @@ public abstract class Block implements Cloneable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public Block(String registryName, Animation animation, int state, boolean solid) {
+        this(registryName, animation, state);
+        this.solid = solid;
+    }
+
+    public Block(String registryName, boolean solid) {
+        this(registryName);
+        this.solid = solid;
     }
 
     public Block(String registryName, Animation animation, int state){
@@ -97,5 +108,9 @@ public abstract class Block implements Cloneable {
 
     public String getRegistryName() {
         return registryName;
+    }
+
+    public boolean testCollision() {
+        return !solid;
     }
 }

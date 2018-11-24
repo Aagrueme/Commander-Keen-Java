@@ -1,14 +1,13 @@
 package commanderKeen.util;
 
-import commanderKeen.entitiy.mob.Player;
-import commanderKeen.states.State;
+import commanderKeen.entitiy.mob.Keen;
 
 public class Camera {
-    private Player player;
+    private Keen player;
     private double camX;
     private double camY;
 
-    public Camera(Player player){
+    public Camera(Keen player){
         this.player = player;
     }
 

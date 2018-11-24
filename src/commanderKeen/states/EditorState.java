@@ -1,5 +1,6 @@
 package commanderKeen.states;
 
+import aagrueme.com.github.api.ImageLoader;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.levels.EditorLevel;
@@ -11,6 +12,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
@@ -82,6 +84,11 @@ public class EditorState extends State {
 
     @Override
     protected void render(Graphics2D g2d) {
+        g2d.setTransform(AffineTransform.getTranslateInstance(level.getX(), level.getY()));
+        g2d.drawImage(ImageLoader.loadImage("commanderKeen/assets/menu/Mars.png"), 0,0, null);
+        g2d.setTransform(AffineTransform.getTranslateInstance(0,0));
+        g2d.setColor(new Color(168, 168, 168, 100));
+        g2d.fill(levelBox);
         level.render(g2d);
         g2d.setColor(Color.BLACK);
         g2d.drawLine(258, 0, 258, 200);
@@ -109,6 +116,9 @@ public class EditorState extends State {
                 break;
             case KeyEvent.VK_ENTER:
                 level.save();
+                break;
+            case KeyEvent.VK_O:
+                level.open();
                 break;
         }
     }
@@ -167,7 +177,7 @@ public class EditorState extends State {
                     blocksBoxY += 5;
                 }
             } else if (e.getWheelRotation() > 0) {
-                if (abs(blocksBoxY) <= (blocks.length /2 * 26) - 190)
+                if (abs(blocksBoxY) <= ((blocks.length /2 + blocks.length % 2) * 26) - 190)
                     blocksBoxY -= 5;
             }
         }

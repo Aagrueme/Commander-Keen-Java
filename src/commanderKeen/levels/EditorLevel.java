@@ -40,6 +40,7 @@ public class EditorLevel extends Level {
             for (boolean valid = false;!valid;){
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setAcceptAllFileFilterUsed(false);
+                fileChooser.setDialogTitle("Save");
                 fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
                 fileChooser.showOpenDialog(null);
                 file = fileChooser.getSelectedFile();
@@ -55,4 +56,23 @@ public class EditorLevel extends Level {
         }
     }
 
+    public void open() {
+        File file = null;
+        for (boolean valid = false;!valid;){
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setDialogTitle("Open");
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
+            fileChooser.showOpenDialog(null);
+            file = fileChooser.getSelectedFile();
+            if (file.exists()) {
+                valid = true;
+            }
+        }
+        try {
+            setBlocks(convertFileToLevelData(file));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

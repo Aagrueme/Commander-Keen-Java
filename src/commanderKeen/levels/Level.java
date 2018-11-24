@@ -1,6 +1,5 @@
 package commanderKeen.levels;
 
-import aagrueme.com.github.api.ResourceLoader;
 import com.sun.istack.internal.NotNull;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 
 public abstract class Level {
 
-    protected LevelSlot[][] level;
+    public LevelSlot[][] level;
 
     public ArrayList<Block> blocks;
     public int width;
@@ -107,41 +106,18 @@ public abstract class Level {
         init();
     }
 
-    protected ArrayList<Block> convertFileToLevelData(String path) throws IOException {
-        JSONArray array = new JSONObject(new BufferedReader(new InputStreamReader(ResourceLoader.load(path))).readLine()).getJSONArray("level");
+    protected ArrayList<Block> convertFileToLevelData(File file) throws IOException {
+        JSONArray array = new JSONObject(new BufferedReader(new FileReader(file)).readLine()).getJSONArray("level");
         ArrayList<Block> list = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
             Block block = GameRegistry.getBlock(array.getString(i));
             list.add(i, block);
         }
         return list;
+    }
 
-        /*ArrayList<Block> blocks = new ArrayList<>();
-        try {
-            String s;
-            BufferedReader reader = new BufferedReader(new InputStreamReader(ResourceLoader.load(path)));
-            while ((s = reader.readLine()) != null){
-                String blockStrings[] = s.split(" ");
-                for (String s1 : blockStrings) {
-                    boolean b = true;
-                    if(b) {
-                        for (BlockShortcut shortcut : pBlocks) {
-                            if (s1.equalsIgnoreCase(shortcut.id) && b) {
-                                blocks.add(shortcut.actualBlock);
-                                b = false;
-                            }
-                        }
-                        if (b) {
-                            blocks.add(Blocks.BLOCK_NULL);
-                        }
-                    }
-
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return blocks;*/
+    protected ArrayList<Block> convertFileToLevelData(String path) throws IOException {
+        return convertFileToLevelData(new File(path));
     }
 
     public void setX(double x) {
