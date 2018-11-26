@@ -85,7 +85,7 @@ public class EditorState extends State {
     @Override
     protected void render(Graphics2D g2d) {
         g2d.setTransform(AffineTransform.getTranslateInstance(level.getX(), level.getY()));
-        g2d.drawImage(ImageLoader.loadImage("commanderKeen/assets/menu/Mars.png"), 0,0, null);
+        g2d.drawImage(ImageLoader.loadImage("commanderKeen/assets/menu/map.png"), -96, -32, null);
         g2d.setTransform(AffineTransform.getTranslateInstance(0,0));
         g2d.setColor(new Color(168, 168, 168, 100));
         g2d.fill(levelBox);

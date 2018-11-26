@@ -1,9 +1,11 @@
 package commanderKeen.states;
 
+import aagrueme.com.github.api.ImageLoader;
 import commanderKeen.entitiy.mob.MapKeen;
 import commanderKeen.levels.MapLevel;
 import commanderKeen.main.Game;
 import commanderKeen.main.GamePanel;
+import commanderKeen.util.Camera;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -12,13 +14,15 @@ import java.awt.event.MouseWheelEvent;
 
 public class MapState extends State {
 
-	MapLevel level;
+    private Camera camera;
+    MapLevel level;
 	MapKeen keen;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
-		level = new MapLevel();
-		keen =  new MapKeen(level);
+        level = new MapLevel();
+        keen = new MapKeen(level);
+        camera = new Camera(keen);
 	}
 
 	@Override
@@ -26,10 +30,13 @@ public class MapState extends State {
 		setScale(GamePanel.width / 320d, GamePanel.height / 200d);
 		level.update();
 		keen.update();
+		camera.update();
 	}
 
 	@Override
-	public void render(Graphics2D g2d) {
+	public void render(Graphics2D g) {
+		Graphics2D g2d = camera.getGraphics(g);
+		g2d.drawImage(ImageLoader.loadImage("commanderKeen/assets/menu/map.png"), -96, -32, null);
 	    level.render(g2d);
 	    keen.render(g2d);
 	}
@@ -38,27 +45,28 @@ public class MapState extends State {
 	public void keyPressed(KeyEvent e, int k) {
 	    switch (k){
             case KeyEvent.VK_W:
-                level.setY(level.getY() + 10);
-                keen.setUp(keen.getUp() + 10);
+                keen.setUp(true);
                 break;
             case KeyEvent.VK_S:
-                level.setY(level.getY() - 10);
-                keen.setDown(keen.getDown() - 10);
+                keen.setDown(true);
                 break;
             case KeyEvent.VK_A:
-                level.setX(level.getX() + 10);
-                keen.setLeft(keen.getLeft() + 10);
+                keen.setLeft(true);
                 break;
             case KeyEvent.VK_D:
-                level.setX(level.getX() - 10);
-                keen.setRight(keen.getRight() - 10);
+                keen.setRight(true);
                 break;
         }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e, int k) {
-
+	    switch (k){
+            case KeyEvent.VK_W:keen.setUp(false);break;
+            case KeyEvent.VK_A:keen.setLeft(false);break;
+            case KeyEvent.VK_S:keen.setDown(false);break;
+            case KeyEvent.VK_D:keen.setRight(false);break;
+        }
 	}
 
 	@Override

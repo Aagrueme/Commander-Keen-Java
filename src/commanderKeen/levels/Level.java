@@ -5,6 +5,7 @@ import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.main.Game;
 import commanderKeen.registry.GameRegistry;
+import commanderKeen.util.Camera;
 import commanderKeen.util.LevelSlot;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -71,7 +72,8 @@ public abstract class Level {
     }
 
     public void render(Graphics2D g2d) {
-        g2d.setTransform(AffineTransform.getTranslateInstance(x, y));
+        AffineTransform transform = g2d.getTransform();
+        g2d.setTransform(AffineTransform.getTranslateInstance( g2d.getTransform().getTranslateX() + x, g2d.getTransform().getTranslateY() + y));
         g2d.setColor(Color.white);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -92,7 +94,7 @@ public abstract class Level {
                 }
             }
         }
-        g2d.setTransform(AffineTransform.getTranslateInstance(0, 0));
+        g2d.setTransform(transform);
     }
 
     public void setBlocks(ArrayList<Block> blocks) {
@@ -104,6 +106,16 @@ public abstract class Level {
 
         this.blocks = blocks;
         init();
+    }
+
+    protected ArrayList<Block> convertFileToLevelData(InputStream file) throws IOException {
+        JSONArray array = new JSONObject(new BufferedReader(new InputStreamReader(file)).readLine()).getJSONArray("level");
+        ArrayList<Block> list = new ArrayList<>();
+        for (int i = 0; i < array.length(); i++) {
+            Block block = GameRegistry.getBlock(array.getString(i));
+            list.add(i, block);
+        }
+        return list;
     }
 
     protected ArrayList<Block> convertFileToLevelData(File file) throws IOException {

@@ -61,6 +61,9 @@ public abstract class Block implements Cloneable {
     protected void setTexture(BufferedImage texture) {
         this.texture = texture;
     }
+    public void setSolid(boolean solid) {
+        this.solid = solid;
+    }
 
     public BufferedImage getTexture() {
         return texture;
