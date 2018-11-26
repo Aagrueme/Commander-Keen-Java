@@ -39,9 +39,10 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     private Camera camera;
     protected Level level;
     protected float speed = 0.75f;
-    protected int idle = LEFT;
+    protected int idle = DOWN;
 
     protected BufferedImage texture;
+    private double jumpHeight = 4.5f;
 
     public Keen(Level level, double x, double y, Animation animation, Spritesheet idleSprite){
         this.level = level;

@@ -42,4 +42,9 @@ public class Camera {
     public void addCamY(int y) {
         this.camY += y;
     }
+
+    public Graphics2D getGraphics(Graphics2D g2d) {
+        g2d.setTransform(AffineTransform.getTranslateInstance(camX, camY));
+        return g2d;
+    }
 }

@@ -17,6 +17,7 @@ public class MapState extends State {
     private Camera camera;
     MapLevel level;
 	MapKeen keen;
+	Camera camera;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
@@ -29,6 +30,7 @@ public class MapState extends State {
 	public void update() {
 		setScale(GamePanel.width / 320d, GamePanel.height / 200d);
 		level.update();
+        camera.update();
 		keen.update();
 		camera.update();
 	}
@@ -38,7 +40,7 @@ public class MapState extends State {
 		Graphics2D g2d = camera.getGraphics(g);
 		g2d.drawImage(ImageLoader.loadImage("commanderKeen/assets/menu/map.png"), -96, -32, null);
 	    level.render(g2d);
-	    keen.render(g2d);
+	    keen.render(g);
 	}
 
 	@Override

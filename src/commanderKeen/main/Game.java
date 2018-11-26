@@ -1,6 +1,5 @@
 package commanderKeen.main;
 
-import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
@@ -8,10 +7,6 @@ import commanderKeen.util.Mouse;
 import java.awt.*;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.management.ManagementFactory;
 
 import javax.swing.JFrame;
