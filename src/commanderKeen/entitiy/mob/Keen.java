@@ -18,9 +18,9 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     public double camToY;
     public double camToX;
 
-    public int right = 0;
-    public int left = 0;
-    public int jump = 0;
+    public boolean right = false;
+    public boolean left = false;
+    public boolean jump = false;
     public boolean falling = false;
     protected final float GRAVITY = 0.2F;
     protected final float MAX_FALLING_SPEED = 4.5F;
@@ -38,6 +38,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected int idle = LEFT;
 
     protected BufferedImage texture;
+    private double jumpHeight = 4.5f;
 
     public Keen(Level level, double x, double y, Animation animation, Spritesheet idleSprite){
         this.level = level;
@@ -60,20 +61,22 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         x += dx;
         y += dy;
         dx = 0;
+        dy = 0;
+
     }
 
     protected void calculateMovement() {
-        if(left > 0) dx = -speed;
-        if(right > 0) dx = speed;
+        if(left) dx = -speed;
+        if(right) dx = speed;
 
-        if(falling && jump == 0) {
+        if(falling && !jump) {
             dy += GRAVITY;
             if(dy > MAX_FALLING_SPEED) dy = MAX_FALLING_SPEED;
         }
 
-        if(jump > 0 && !falling) {
-            dy = jump;
-            jump = 0;
+        if(jump && !falling) {
+            dy = jumpHeight;
+            jump = false;
             falling = true;
         }
     }
@@ -107,8 +110,6 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
             for (int i = 0; accepted; i++) {
                 dy -= i;
                 if (level.level[(int) (x + dx) / 16][(int) y / 16].getBlock().testCollision()) {
-                    right = 0;
-                    left = 0;
                     accepted = true;
                 }
             }
@@ -116,8 +117,6 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
             for (int i = 0; accepted; i++) {
                 dy += i;
                 if (level.level[(int) (x + dx) / 16][(int) y / 16].getBlock().testCollision()) {
-                    right = 0;
-                    left = 0;
                     accepted = true;
                 }
             }

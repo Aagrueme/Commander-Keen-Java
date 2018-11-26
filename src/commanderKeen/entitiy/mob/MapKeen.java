@@ -11,8 +11,8 @@ public class MapKeen extends Keen {
     private static Spritesheet idleSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 3, 16, 16);
     private static Spritesheet animationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 2, 16, 16, 16, 0);
 
-    private int up = 0;
-    private int down = 0;
+    private boolean up = false;
+    private boolean down = false;
 
     public MapKeen(Level level) {
         super(level, 0, 0, new Animation(animationSprite, 3, 3, 71), idleSprite);
@@ -44,41 +44,41 @@ public class MapKeen extends Keen {
 
     @Override
     protected void calculateMovement() {
-        if(left > 0) dx = -speed;
-        if(right > 0) dx = speed;
-        if(up > 0) dx = -speed;
-        if(down > 0) dx = speed;
+        if(left) dx = -speed;
+        if(right) dx = speed;
+        if(up) dx = -speed;
+        if(down) dx = speed;
     }
 
-    public int getRight() {
+    public boolean getRight() {
         return right;
     }
 
-    public void setRight(int right) {
+    public void setRight(boolean right) {
         this.right = right;
     }
 
-    public int getLeft() {
+    public boolean getLeft() {
         return left;
     }
 
-    public void setLeft(int left) {
+    public void setLeft(boolean left) {
         this.left = left;
     }
 
-    public int getUp() {
+    public boolean getUp() {
         return up;
     }
 
-    public void setUp(int up) {
+    public void setUp(boolean up) {
         this.up = up;
     }
 
-    public int getDown() {
+    public boolean getDown() {
         return down;
     }
 
-    public void setDown(int down) {
+    public void setDown(boolean down) {
         this.down = down;
     }
 }

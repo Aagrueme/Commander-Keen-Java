@@ -14,6 +14,8 @@ public class Camera {
     public void update(){
         camX += player.camToX;
         camY += player.camToY;
+        player.camToX = 0;
+        player.camToY = 0;
     }
 
     public double getCamX() {

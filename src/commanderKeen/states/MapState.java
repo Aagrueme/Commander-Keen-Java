@@ -39,26 +39,31 @@ public class MapState extends State {
 	    switch (k){
             case KeyEvent.VK_W:
                 level.setY(level.getY() + 10);
-                keen.setUp(keen.getUp() + 10);
+                keen.setUp(true);
                 break;
             case KeyEvent.VK_S:
                 level.setY(level.getY() - 10);
-                keen.setDown(keen.getDown() - 10);
+                keen.setDown(true);
                 break;
             case KeyEvent.VK_A:
                 level.setX(level.getX() + 10);
-                keen.setLeft(keen.getLeft() + 10);
+                keen.setLeft(true);
                 break;
             case KeyEvent.VK_D:
                 level.setX(level.getX() - 10);
-                keen.setRight(keen.getRight() - 10);
+                keen.setRight(true);
                 break;
         }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e, int k) {
-
+		switch (k){
+			case KeyEvent.VK_W: keen.setUp(false);break;
+			case KeyEvent.VK_A: keen.setLeft(false);break;
+			case KeyEvent.VK_S: keen.setDown(false);break;
+			case KeyEvent.VK_D: keen.setRight(false);break;
+		}
 	}
 
 	@Override
