@@ -17,7 +17,6 @@ public class MapState extends State {
     private Camera camera;
     MapLevel level;
 	MapKeen keen;
-	Camera camera;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
