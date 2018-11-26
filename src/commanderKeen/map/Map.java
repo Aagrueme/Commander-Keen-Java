@@ -10,10 +10,4 @@ public class Map extends Level {
         super(blocks, 0, 0);
         this.camera = camera;
     }
-
-    @Override
-    public void update(){
-        setX(camera.getCamX());
-        setY(camera.getCamY());
-    }
 }

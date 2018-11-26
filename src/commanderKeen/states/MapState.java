@@ -4,6 +4,7 @@ import commanderKeen.entitiy.mob.MapKeen;
 import commanderKeen.levels.MapLevel;
 import commanderKeen.main.Game;
 import commanderKeen.main.GamePanel;
+import commanderKeen.util.Camera;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -14,43 +15,43 @@ public class MapState extends State {
 
 	MapLevel level;
 	MapKeen keen;
+	Camera camera;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
 		level = new MapLevel();
 		keen =  new MapKeen(level);
+		camera = new Camera(keen);
 	}
 
 	@Override
 	public void update() {
 		setScale(GamePanel.width / 320d, GamePanel.height / 200d);
 		level.update();
+        camera.update();
 		keen.update();
 	}
 
 	@Override
-	public void render(Graphics2D g2d) {
+	public void render(Graphics2D g) {
+	    Graphics2D g2d = camera.getGraphics(g);
 	    level.render(g2d);
-	    keen.render(g2d);
+	    keen.render(g);
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e, int k) {
 	    switch (k){
             case KeyEvent.VK_W:
-                level.setY(level.getY() + 10);
                 keen.setUp(true);
                 break;
             case KeyEvent.VK_S:
-                level.setY(level.getY() - 10);
                 keen.setDown(true);
                 break;
             case KeyEvent.VK_A:
-                level.setX(level.getX() + 10);
                 keen.setLeft(true);
                 break;
             case KeyEvent.VK_D:
-                level.setX(level.getX() - 10);
                 keen.setRight(true);
                 break;
         }

@@ -1,6 +1,10 @@
 package commanderKeen.util;
 
 import commanderKeen.entitiy.mob.Keen;
+import commanderKeen.main.Game;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 public class Camera {
     private Keen player;
@@ -9,11 +13,13 @@ public class Camera {
 
     public Camera(Keen player){
         this.player = player;
+        camX = -player.getX() + (Game.ORIGINAL_WIDTH /2 - 8);
+        camY = -player.getY() + (Game.ORIGINAL_HEIGHT /2 - 8);
     }
 
     public void update(){
-        camX += player.camToX;
-        camY += player.camToY;
+        camX -= player.camToX;
+        camY -= player.camToY;
         player.camToX = 0;
         player.camToY = 0;
     }
@@ -32,5 +38,10 @@ public class Camera {
 
     public void setCamY(double camY) {
         this.camY = camY;
+    }
+
+    public Graphics2D getGraphics(Graphics2D g2d) {
+        g2d.setTransform(AffineTransform.getTranslateInstance(camX, camY));
+        return g2d;
     }
 }

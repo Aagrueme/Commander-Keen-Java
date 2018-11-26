@@ -71,7 +71,8 @@ public abstract class Level {
     }
 
     public void render(Graphics2D g2d) {
-        g2d.setTransform(AffineTransform.getTranslateInstance(x, y));
+        AffineTransform transform = g2d.getTransform();
+        g2d.setTransform(AffineTransform.getTranslateInstance(transform.getTranslateX() + x, transform.getTranslateY() + y));
         g2d.setColor(Color.white);
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
@@ -92,7 +93,7 @@ public abstract class Level {
                 }
             }
         }
-        g2d.setTransform(AffineTransform.getTranslateInstance(0, 0));
+        g2d.setTransform(transform);
     }
 
     public void setBlocks(ArrayList<Block> blocks) {

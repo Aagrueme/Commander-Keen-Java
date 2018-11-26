@@ -15,27 +15,35 @@ public class MapKeen extends Keen {
     private boolean down = false;
 
     public MapKeen(Level level) {
-        super(level, 0, 0, new Animation(animationSprite, 3, 3, 71), idleSprite);
+        super(level, 16 * 4, 16 * 33, new Animation(animationSprite, 3, 3, 71), idleSprite);
     }
 
     @Override
     protected void calculateAnimation() {
         animation.update();
-        if(dx > 0 && animation.getCurrentState() != LEFT) {
-            animation.setState(LEFT);
-            idle = LEFT;
+        if(dx > 0) {
+            if(animation.getCurrentState() != RIGHT) {
+                animation.setState(RIGHT);
+                idle = RIGHT;
+            }
             texture = animation.getImage();
-        } else if(dx < 0 && animation.getCurrentState() != RIGHT) {
-            animation.setState(RIGHT);
-            idle = RIGHT;
+        } else if(dx < 0) {
+            if(animation.getCurrentState() != LEFT) {
+                animation.setState(LEFT);
+                idle = LEFT;
+            }
             texture = animation.getImage();
-        }else if(dy > 0 && animation.getCurrentState() != DOWN) {
-            animation.setState(DOWN);
-            idle = DOWN;
+        }else if(dy > 0) {
+            if(animation.getCurrentState() != DOWN) {
+                animation.setState(DOWN);
+                idle = DOWN;
+            }
             texture = animation.getImage();
-        } else if(dy < 0 && animation.getCurrentState() != UP) {
-            animation.setState(UP);
-            idle = UP;
+        } else if(dy < 0) {
+            if(animation.getCurrentState() != UP) {
+                animation.setState(UP);
+                idle = UP;
+            }
             texture = animation.getImage();
         }else if(dx == 0) {
             texture = idleSprite.getImage(idle, 0);
@@ -46,8 +54,8 @@ public class MapKeen extends Keen {
     protected void calculateMovement() {
         if(left) dx = -speed;
         if(right) dx = speed;
-        if(up) dx = -speed;
-        if(down) dx = speed;
+        if(up) dy = -speed;
+        if(down) dy = speed;
     }
 
     public boolean getRight() {

@@ -113,4 +113,8 @@ public abstract class Block implements Cloneable {
     public boolean testCollision() {
         return !solid;
     }
+
+    protected void setSolid(boolean solid) {
+        this.solid = solid;
+    }
 }

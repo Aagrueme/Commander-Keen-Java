@@ -12,9 +12,9 @@ import java.awt.image.BufferedImage;
 
 public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected static final int RIGHT = 0;
-    protected static final int UP = 1;
+    protected static final int DOWN = 1;
     protected static final int LEFT = 2;
-    protected static final int DOWN = 3;
+    protected static final int UP = 3;
     public double camToY;
     public double camToX;
 
@@ -35,7 +35,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     protected Level level;
     protected float speed = 0.75f;
-    protected int idle = LEFT;
+    protected int idle = DOWN;
 
     protected BufferedImage texture;
     private double jumpHeight = 4.5f;
@@ -52,17 +52,19 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     @Override
     public void render(Graphics2D g2d) {
-        g2d.setTransform(AffineTransform.getTranslateInstance(x, y));
+        AffineTransform transform = g2d.getTransform();
+        g2d.setTransform(AffineTransform.getTranslateInstance(transform.getTranslateX() + x, transform.getTranslateY() + y));
         g2d.drawImage(texture, 0, 0, null);
-        g2d.setTransform(AffineTransform.getTranslateInstance(0, 0));
+        g2d.setTransform(transform);
     }
 
     protected void move() {
         x += dx;
         y += dy;
+        camToX += dx;
+        camToY += dy;
         dx = 0;
         dy = 0;
-
     }
 
     protected void calculateMovement() {
@@ -107,35 +109,45 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected void collision() {
         boolean accepted = false;
         if(dx > 0) {
-            for (int i = 0; accepted; i++) {
-                dy -= i;
+            for (int i = 0; !accepted; i++) {
                 if (level.level[(int) (x + dx) / 16][(int) y / 16].getBlock().testCollision()) {
                     accepted = true;
+                }else {
+                    dx -= i;
                 }
             }
         }else if(dx < 0) {
-            for (int i = 0; accepted; i++) {
-                dy += i;
+            for (int i = 0; !accepted; i++) {
                 if (level.level[(int) (x + dx) / 16][(int) y / 16].getBlock().testCollision()) {
                     accepted = true;
+                }else{
+                    dx += i;
                 }
             }
         }
         accepted = false;
         if(dy > 0) {
-            for (int i = 0; accepted; i++) {
+            for (int i = 0; !accepted; i++) {
                 dy -= i;
                 if (level.level[(int) x / 16][(int) (y + dy) / 16].getBlock().testCollision()) {
                     accepted = true;
                 }
             }
         }else if(dy < 0) {
-            for (int i = 0; accepted; i++) {
+            for (int i = 0; !accepted; i++) {
                 dy += i;
                 if (level.level[(int) x / 16][(int) (y + dy) / 16].getBlock().testCollision()) {
                     accepted = true;
                 }
             }
         }
+    }
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
     }
 }
