@@ -1,5 +1,6 @@
 package commanderKeen.blocks;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class Blocks {
     public static final BlockBasicGround BLOCK_BASIC_GROUND_EDGE_RIGHT_TOP = new BlockBasicGround(BlockBasicGround.Variation.EdgeRightTop);
     public static final BlockBasicGround BLOCK_BASIC_GROUND_EDGE_LEFT_TOP = new BlockBasicGround(BlockBasicGround.Variation.EdgeLeftTop);
 
+    public static final BlockRocketBack BLOCK_ROCKET_BACK = new BlockRocketBack();
+    public static final BlockRocketFront BLOCK_ROCKET_Front = new BlockRocketFront();
 
     static{
         for (BlockMap.Variation variation:BlockMap.Variation.values()) {
@@ -25,6 +28,17 @@ public class Blocks {
         }
     }
 
+    static{
+        for (BlockMapLevelStart.Variation variation:BlockMapLevelStart.Variation.values()) {
+            new BlockMapLevelStart(variation, false);
+        }
+    }
+
+    static{
+        for (BlockMapLevelStart.Variation variation:BlockMapLevelStart.Variation.values()) {
+            new BlockMapLevelStart(variation, true);
+        }
+    }
 
     public static final BlockAir BLOCK_AIR = new BlockAir();
     public static final BlockNull BLOCK_NULL = new BlockNull();

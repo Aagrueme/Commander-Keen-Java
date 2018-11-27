@@ -78,7 +78,7 @@ public abstract class Level {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 try {
-                    level[x][y].getBlock().render(g2d, x * 16, y * 16);
+                    level[x][y].getBlock().renderEditorBlock(g2d, x * 16, y * 16);
                 } catch (NullPointerException ignored) {}
                 if(grid){
                     int width = 16;

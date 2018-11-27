@@ -12,8 +12,8 @@ import java.io.IOException;
 
 public abstract class Block implements Cloneable {
 
-    private int x;
-    private int y;
+    protected int x;
+    protected int y;
     private String registryName;
     private int animationState;
     public Animation animation;
@@ -98,6 +98,15 @@ public abstract class Block implements Cloneable {
 
     public void render(Graphics2D g2d, int x, int y){
         g2d.drawImage(texture, x, y, null);
+    }
+
+
+    public void renderEditorBlock(Graphics2D g2d){
+        render(g2d);
+    }
+
+    public void renderEditorBlock(Graphics2D g2d, int x, int y){
+        render(g2d, x, y);
     }
 
     public boolean isNewObject() {
