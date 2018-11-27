@@ -15,8 +15,8 @@ import java.awt.event.MouseWheelEvent;
 public class MapState extends State {
 
     private Camera camera;
-    MapLevel level;
-	MapKeen keen;
+	private MapLevel level;
+	private MapKeen keen;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
@@ -45,28 +45,28 @@ public class MapState extends State {
 	@Override
 	public void keyPressed(KeyEvent e, int k) {
 	    switch (k){
-            case KeyEvent.VK_W:
-                keen.setUp(true);
-                break;
-            case KeyEvent.VK_S:
-                keen.setDown(true);
-                break;
-            case KeyEvent.VK_A:
-                keen.setLeft(true);
-                break;
-            case KeyEvent.VK_D:
-                keen.setRight(true);
-                break;
+			case KeyEvent.VK_W: keen.setUp(true);break;
+            case KeyEvent.VK_S: keen.setDown(true);break;
+            case KeyEvent.VK_A: keen.setLeft(true); break;
+            case KeyEvent.VK_D: keen.setRight(true);break;
+            case KeyEvent.VK_UP: keen.setUp(true);break;
+            case KeyEvent.VK_DOWN: keen.setDown(true);break;
+            case KeyEvent.VK_LEFT: keen.setLeft(true); break;
+            case KeyEvent.VK_RIGHT: keen.setRight(true);break;
         }
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e, int k) {
 	    switch (k){
-            case KeyEvent.VK_W:keen.setUp(false);break;
-            case KeyEvent.VK_A:keen.setLeft(false);break;
-            case KeyEvent.VK_S:keen.setDown(false);break;
-            case KeyEvent.VK_D:keen.setRight(false);break;
+            case KeyEvent.VK_W: keen.setUp(false);break;
+            case KeyEvent.VK_S: keen.setDown(false);break;
+            case KeyEvent.VK_A: keen.setLeft(false); break;
+            case KeyEvent.VK_D: keen.setRight(false);break;
+            case KeyEvent.VK_UP: keen.setUp(false);break;
+            case KeyEvent.VK_DOWN: keen.setDown(false);break;
+            case KeyEvent.VK_LEFT: keen.setLeft(false); break;
+            case KeyEvent.VK_RIGHT: keen.setRight(false);break;
         }
 	}
 
