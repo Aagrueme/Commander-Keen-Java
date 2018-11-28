@@ -1,4 +1,6 @@
-package commanderKeen.blocks.showBlocks;
+package commanderKeen.blocks;
+
+import commanderKeen.blocks.showBlocks.*;
 
 public class ShowBlocks {
     public final BlockFireShow BLOCK_FIRE_SHOW_DARK = new BlockFireShow(BlockFireShow.Variation.DARK);

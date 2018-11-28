@@ -10,7 +10,6 @@ import commanderKeen.util.IHasUpdater;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.util.Scanner;
 
 public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected static final int RIGHT = 0;
@@ -36,9 +35,8 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected double dx;
     protected double dy;
 
-    private Camera camera;
     protected Level level;
-    protected float speed = 0.75f;
+    protected float speed = 2;
     protected int idle = DOWN;
 
     protected BufferedImage texture;
@@ -54,7 +52,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         this.texture = animation.getImage();
     }
 
-    @Override
+    //@Override
     public void render(Graphics2D g2d) {
         AffineTransform transform = g2d.getTransform();
         g2d.setTransform(AffineTransform.getTranslateInstance( g2d.getTransform().getTranslateX() + x, g2d.getTransform().getTranslateY() + y));
@@ -112,7 +110,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         texture = animation.getImage();
     }
 
-    @Override
+    //@Override
     public void update() {
         calculateMovement();
         calculateAnimation();
@@ -157,9 +155,5 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
                 }
             }
         }
-    }
-
-    public void setCamera(Camera camera) {
-        this.camera = camera;
     }
 }

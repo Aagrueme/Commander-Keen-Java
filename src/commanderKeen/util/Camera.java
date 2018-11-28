@@ -13,7 +13,6 @@ public class Camera {
 
     public Camera(Keen player){
         this.player = player;
-        this.player.setCamera(this);
         this.camX = -player.getX() + (Game.ORIGINAL_WIDTH / 2 - 8);
         this.camY = -player.getY() + (Game.ORIGINAL_HEIGHT / 2 - 8);
     }

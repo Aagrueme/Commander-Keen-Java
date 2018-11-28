@@ -30,8 +30,7 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
         width = getPreferredSize().width;
         height = getPreferredSize().height;
 
-
-        int editor = JOptionPane.showConfirmDialog(this, "Do you want to open the editor ?");
+        int editor = JOptionPane.showConfirmDialog(this, "Do you want to open the editor?");
 
         switch (editor){
             case -1:
@@ -46,8 +45,6 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
             case 2:
                 System.exit(1);
                 break;
-            default:
-                Game.gsm = new GameStateManager(GameStateManager.MENU_STATE, this);
         }
     }
 
