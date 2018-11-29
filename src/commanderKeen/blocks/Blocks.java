@@ -34,6 +34,12 @@ public class Blocks {
         }
     }
 
+    public static final BlockLevelDone BLOCK_LEVEL_DONE_SMALL = new BlockLevelDone(BlockLevelDone.Variation.small);
+    public static final BlockLevelDone BLOCK_LEVEL_DONE_BIG_LEFT_BOTTOM = new BlockLevelDone(BlockLevelDone.Variation.big_left_bottom);
+    public static final BlockLevelDone BLOCK_LEVEL_DONE_BIG_LEFT_TOP = new BlockLevelDone(BlockLevelDone.Variation.big_left_top);
+    public static final BlockLevelDone BLOCK_LEVEL_DONE_BIG_RIGHT_TOP = new BlockLevelDone(BlockLevelDone.Variation.big_right_top);
+    public static final BlockLevelDone BLOCK_LEVEL_DONE_BIG_RIGHT_BOTTOM = new BlockLevelDone(BlockLevelDone.Variation.big_right_bottom);
+
     static{
         for (BlockMapLevelStartSolid.Variation variation:BlockMapLevelStartSolid.Variation.values()) {
             new BlockMapLevelStartSolid(variation);

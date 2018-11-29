@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 
 public class BlockMapLevelStart extends Block {
 
-    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map_level_start.png"), 0, 22, 16, 16);
+    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map_level_start.png"), 0, 18, 16, 16);
     private Variation variation;
 
     public BlockMapLevelStart(Variation variation) {
@@ -36,23 +36,13 @@ public class BlockMapLevelStart extends Block {
         block_16(variationSprite.getImage(0,15)),
         block_17(variationSprite.getImage(0,16)),
         block_18(variationSprite.getImage(0,17)),
-        block_19(variationSprite.getImage(0,18)),
-        block_20(variationSprite.getImage(0,19)),
-        block_21(variationSprite.getImage(0,20)),
-        block_22(variationSprite.getImage(0,21));
+        block_19(variationSprite.getImage(0,18));
 
         private BufferedImage texture;
 
         Variation(BufferedImage texture){
             this.texture = texture;
         }
-    }
-
-    @Override
-    public void renderEditorBlock(Graphics2D g2d) {
-        g2d.drawImage(variation.texture, x, y, null);
-        g2d.setColor(Color.GREEN);
-        g2d.drawRect(x, y, 4, 4);
     }
 
     @Override

@@ -12,11 +12,11 @@ import java.io.IOException;
 
 public abstract class Block implements Cloneable {
 
-    protected int x;
-    protected int y;
+    private int x;
+    private int y;
     private String registryName;
     private int animationState;
-    public Animation animation;
+    private Animation animation;
     private BufferedImage texture;
     private boolean newObject = false;
     private boolean solid = true;
@@ -32,6 +32,8 @@ public abstract class Block implements Cloneable {
     public Block(String registryName, Animation animation, int state, boolean solid) {
         this(registryName, animation, state);
         this.solid = solid;
+        setTexture(this.animation.getImage());
+        this.animation.startAnimation();
     }
 
     public Block(String registryName, boolean solid) {
@@ -43,8 +45,8 @@ public abstract class Block implements Cloneable {
         this(registryName);
         this.animationState = state;
         this.animation = animation;
-        animation.setState(state);
-        setTexture(animation.getImage());
+        setTexture(this.animation.getImage());
+        this.animation.startAnimation();
     }
 
     public Block(String registryName){
@@ -98,11 +100,6 @@ public abstract class Block implements Cloneable {
 
     public void render(Graphics2D g2d, int x, int y){
         g2d.drawImage(texture, x, y, null);
-    }
-
-
-    public void renderEditorBlock(Graphics2D g2d){
-        render(g2d);
     }
 
     public void renderEditorBlock(Graphics2D g2d, int x, int y){

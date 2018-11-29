@@ -11,8 +11,6 @@ public class BlockFireShow extends Block {
 
     public BlockFireShow(Variation variation){
         super("block_fire_show_" + variation.toString().toLowerCase(), new Animation(new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/animations/fire_sprite.png"), 1, 3, 16, 16), 1, 3, 71), variation.state);
-        setTexture(animation.getImage());
-        animation.startAnimation();
     }
 
     public enum Variation{
