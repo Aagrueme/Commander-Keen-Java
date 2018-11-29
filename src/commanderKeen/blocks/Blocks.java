@@ -30,13 +30,13 @@ public class Blocks {
 
     static{
         for (BlockMapLevelStart.Variation variation:BlockMapLevelStart.Variation.values()) {
-            new BlockMapLevelStart(variation, false);
+            new BlockMapLevelStart(variation);
         }
     }
 
     static{
-        for (BlockMapLevelStart.Variation variation:BlockMapLevelStart.Variation.values()) {
-            new BlockMapLevelStart(variation, true);
+        for (BlockMapLevelStartSolid.Variation variation:BlockMapLevelStartSolid.Variation.values()) {
+            new BlockMapLevelStartSolid(variation);
         }
     }
 

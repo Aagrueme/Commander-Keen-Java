@@ -22,10 +22,10 @@ public abstract class Level {
     public ArrayList<Block> blocks;
     public int width;
     public int height;
-    private double x;
-    private double y;
+    protected double x;
+    protected double y;
 
-    private boolean grid;
+    protected boolean grid;
 
     public Level(@NotNull LevelSlot[][] blocks){
         this(blocks, 0, 0);
@@ -78,7 +78,7 @@ public abstract class Level {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 try {
-                    level[x][y].getBlock().renderEditorBlock(g2d, x * 16, y * 16);
+                    level[x][y].getBlock().render(g2d, x * 16, y * 16);
                 } catch (NullPointerException ignored) {}
                 if(grid){
                     int width = 16;

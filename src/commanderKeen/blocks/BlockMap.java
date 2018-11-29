@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class BlockMap extends Block {
 
-    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map.png"), 0, 24, 16, 16);
+    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map.png"), 0, 25, 16, 16);
 
     public BlockMap(Variation variation) {
         super("block_map_" + variation.name().toLowerCase());
@@ -37,7 +37,8 @@ public class BlockMap extends Block {
         block_20(variationSprite.getImage(19)),
         block_21(variationSprite.getImage(20)),
         block_22(variationSprite.getImage(21)),
-        block_23(variationSprite.getImage(22));
+        block_23(variationSprite.getImage(22)),
+        block_24(variationSprite.getImage(23));
 
         private BufferedImage texture;
 

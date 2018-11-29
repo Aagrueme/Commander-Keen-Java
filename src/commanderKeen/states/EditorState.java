@@ -20,7 +20,7 @@ import java.util.List;
 public class EditorState extends State {
 
     private EditorLevel level;
-    private BufferedImage[] blocks;
+    private Block[] blocks;
     private static Rectangle levelBox = new Rectangle(0, 0, 258, 200);
 
     private Block selectedBlock = Blocks.BLOCK_BASIC_GROUND_BOTTOM;
@@ -63,15 +63,7 @@ public class EditorState extends State {
         level = new EditorLevel(levelWidth, levelHeight);
         level.setBlocks(new ArrayList<>());
 
-        List<BufferedImage> list = new ArrayList<>();
-
-        for (Block block : Blocks.blocks) {
-            if (!(block.equals(Blocks.BLOCK_AIR) || block.equals(Blocks.BLOCK_NULL))){
-                list.add(block.getTexture());
-            }
-        }
-
-        blocks = list.toArray(new BufferedImage[0]);
+        blocks = Blocks.blocks.toArray(new Block[0]);
 
     }
 
@@ -96,8 +88,8 @@ public class EditorState extends State {
         g2d.fillRect(259, 0, 61, 200);
 
         for (int i = 0; i < blocks.length; i++) {
-            BufferedImage texture = blocks[i];
-            g2d.drawImage(texture, 259 + (10 + i % 2 * 26), (10 + (i / 2 * 16 + i / 2 * 10)) + blocksBoxY, null);
+            Block block = blocks[i];
+            block.renderEditorBlock(g2d, 259 + (10 + i % 2 * 26), (10 + (i / 2 * 16 + i / 2 * 10)) + blocksBoxY);
         }
 
         g2d.setColor(Color.RED);

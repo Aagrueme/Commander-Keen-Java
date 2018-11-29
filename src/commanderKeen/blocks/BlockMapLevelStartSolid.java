@@ -2,17 +2,18 @@ package commanderKeen.blocks;
 
 import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.Spritesheet;
+import commanderKeen.blocks.Block;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class BlockMapLevelStart extends Block {
+public class BlockMapLevelStartSolid extends Block {
 
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map_level_start.png"), 0, 22, 16, 16);
     private Variation variation;
 
-    public BlockMapLevelStart(Variation variation) {
-        super("block_map_level_start_" + variation.name() + "_solid_false", false);
+    public BlockMapLevelStartSolid(Variation variation) {
+        super("block_map_level_start_" + variation.name() + "_solid_true", true);
         this.variation = variation;
         setTexture(variation.texture);
     }
@@ -51,14 +52,14 @@ public class BlockMapLevelStart extends Block {
     @Override
     public void renderEditorBlock(Graphics2D g2d) {
         g2d.drawImage(variation.texture, x, y, null);
-        g2d.setColor(Color.GREEN);
+        g2d.setColor(Color.RED);
         g2d.drawRect(x, y, 4, 4);
     }
 
     @Override
     public void renderEditorBlock(Graphics2D g2d, int x, int y) {
         g2d.drawImage(variation.texture, x, y, null);
-        g2d.setColor(Color.GREEN);
+        g2d.setColor(Color.RED);
         g2d.drawRect(x, y, 4, 4);
     }
 }
