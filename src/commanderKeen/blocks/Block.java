@@ -14,6 +14,8 @@ public abstract class Block implements Cloneable {
 
     private int x;
     private int y;
+    private int width=16;
+    private int height=16;
     private String registryName;
     private int animationState;
     private Animation animation;
@@ -71,6 +73,18 @@ public abstract class Block implements Cloneable {
         return texture;
     }
 
+    public Rectangle getBounds() {
+        return new Rectangle(x ,y,width,height);
+    }
+    public int getX(){
+        return x;
+    }
+    public int getY(){
+        return y;
+    }
+    public boolean getSolid() {
+        return solid;
+    }
     public Block createBlock(int x, int y){
         try {
             Block block = (Block)clone();
@@ -96,10 +110,14 @@ public abstract class Block implements Cloneable {
 
     public void render(Graphics2D g2d){
         g2d.drawImage(texture, x, y, null);
+
+
     }
 
     public void render(Graphics2D g2d, int x, int y){
         g2d.drawImage(texture, x, y, null);
+        //g2d.setColor(Color.BLACK);
+        //g2d.draw(getBounds());
     }
 
     public void renderEditorBlock(Graphics2D g2d, int x, int y){

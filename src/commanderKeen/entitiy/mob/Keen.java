@@ -2,6 +2,8 @@ package commanderKeen.entitiy.mob;
 
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.Spritesheet;
+import commanderKeen.blocks.Block;
+import commanderKeen.blocks.Blocks;
 import commanderKeen.levels.Level;
 import commanderKeen.util.Camera;
 import commanderKeen.util.IHasRenderer;
@@ -39,6 +41,9 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected float speed = 2;
     protected int idle = DOWN;
 
+    protected int width = 16;
+    protected int height = 16;
+
     protected BufferedImage texture;
     private double jumpHeight = 4.5f;
 
@@ -58,6 +63,16 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         g2d.setTransform(AffineTransform.getTranslateInstance( g2d.getTransform().getTranslateX() + x, g2d.getTransform().getTranslateY() + y));
         g2d.drawImage(texture, 0, 0, null);
         g2d.setTransform(transform);
+        //drawHitBox(g2d);
+
+    }
+
+    private void drawHitBox(Graphics2D g2d){
+        g2d.setColor(Color.RED);
+        g2d.draw(getBounds());
+        g2d.draw(getBoundsRight());
+        g2d.draw(getBoundsLeft());
+        g2d.draw(getBoundsTop());
     }
 
     public double getX() {
@@ -92,7 +107,19 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
             falling = true;
         }
     }
-    
+    protected Rectangle getBounds() {
+        return new Rectangle((int) ((int)x+(width/2)-((width/2)/2)), (int)(y+height/2), (int)width/2, (int)height/2);
+    }
+    protected Rectangle getBoundsTop() {
+        return new Rectangle((int) ((int)x+(width/2)-((width/2)/2)), (int)y, (int)width/2, (int)height/2);
+    }
+    protected Rectangle getBoundsRight() {
+        return new Rectangle((int) ((int)x+width/4*3), (int)(y+height/4), (int)width/4, (int)height/2);
+    }
+    protected Rectangle getBoundsLeft() {
+        return new Rectangle((int)x, (int)(y+height/4), (int)width/4, (int)height/2);
+    }
+
     protected void calculateAnimation(){
         animation.update();
         if(dx > 0 && animation.getCurrentState() != LEFT) {
@@ -119,39 +146,21 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     }
 
     protected void collision() {
-        boolean accepted = false;
-        if(dx > 0) {
-            for (int i = 0;!accepted; i++) {
-                if (level.level[(int) (x + dx) / 16][(int) (y) / 16].getBlock().testCollision()) {
-                    accepted = true;
-                }else{
-                    dx -= i;
-                }
-            }
-        }else if(dx < 0) {
-            for (int i = 0; !accepted; i++) {
-                if (level.level[(int) (x + dx) / 16][(int) (y) / 16].getBlock().testCollision()) {
-                    accepted = true;
-                }else{
-                    dx += i;
-                }
-            }
-        }
-        accepted = false;
-        if(dy > 0) {
-            for (int i = 0; !accepted; i++) {
-                if (level.level[(int)( x) / 16][(int) (y + dy) / 16].getBlock().testCollision()) {
-                    accepted = true;
-                }else{
-                    dy -= i;
-                }
-            }
-        }else if(dy < 0) {
-            for (int i = 0; !accepted; i++) {
-                if (level.level[(int)( x) / 16][(int) (y + dy) / 16].getBlock().testCollision()) {
-                    accepted = true;
-                }else{
-                    dy += i;
+        for(int yy=0;yy< level.level.length;yy++) {
+            for (int xx=0;xx<level.level.length;xx++) {
+                if(level.level[xx][yy].getBlock().getSolid()){
+                    if(getBounds().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                        y = level.level[xx][yy].getBlock().getY()-height;
+                    }
+                    if(getBoundsTop().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                        y = level.level[xx][yy].getBlock().getY()+height;
+                    }
+                    if(getBoundsRight().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                        x = level.level[xx][yy].getBlock().getX()-width;
+                    }
+                    if(getBoundsLeft().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                        x = level.level[xx][yy].getBlock().getX()+width;
+                    }
                 }
             }
         }
