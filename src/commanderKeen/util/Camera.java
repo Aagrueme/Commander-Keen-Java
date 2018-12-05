@@ -10,6 +10,9 @@ public class Camera {
     private Keen player;
     private double camX;
     private double camY;
+    private double tarX;
+    private double tarY;
+    private double smoothness = 0.05;
 
     public Camera(Keen player){
         this.player = player;
@@ -18,10 +21,10 @@ public class Camera {
     }
 
     public void update(){
-        camX -= player.camToX;
-        camY -= player.camToY;
-        player.camToX = 0;
-        player.camToY = 0;
+        tarX = -player.getX()+ (Game.ORIGINAL_WIDTH / 2 - 8);
+        tarY = -player.getY()+ (Game.ORIGINAL_HEIGHT / 2 - 8);
+        setCamX(camX+=(tarX-camX)*smoothness);
+        setCamY(camY+=(tarY-camY)*smoothness);
     }
 
     public void setCamX(double camX) {
