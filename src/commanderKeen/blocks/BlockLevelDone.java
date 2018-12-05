@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 
 public class BlockLevelDone extends Block {
 
-    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/level_done.png"), 0, 4, 16, 16);
+    private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map.png"), 0, 4, 16, 16);
 
     public BlockLevelDone(Variation variation) {
         super("block_level_done_" + variation.name(), false);
