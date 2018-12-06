@@ -2,10 +2,7 @@ package commanderKeen.entitiy.mob;
 
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.Spritesheet;
-import commanderKeen.blocks.Block;
-import commanderKeen.blocks.Blocks;
 import commanderKeen.levels.Level;
-import commanderKeen.util.Camera;
 import commanderKeen.util.IHasRenderer;
 import commanderKeen.util.IHasUpdater;
 
@@ -108,16 +105,16 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         }
     }
     protected Rectangle getBounds() {
-        return new Rectangle((int) ((int)x+(width/2)-((width/2)/2)), (int)(y+height/2), (int)width/2, (int)height/2);
+        return new Rectangle(((int)x+(width/2)-((width/2)/2)), (int)(y+height/2), width/2, height/2);
     }
     protected Rectangle getBoundsTop() {
-        return new Rectangle((int) ((int)x+(width/2)-((width/2)/2)), (int)y, (int)width/2, (int)height/2);
+        return new Rectangle(((int)x+(width/2)-((width/2)/2)), (int)y, width/2, height/2);
     }
     protected Rectangle getBoundsRight() {
-        return new Rectangle((int) ((int)x+width/4*3), (int)(y+height/4), (int)width/4, (int)height/2);
+        return new Rectangle(((int)x+width/4*3), (int)(y+height/4), width/4, height/2);
     }
     protected Rectangle getBoundsLeft() {
-        return new Rectangle((int)x, (int)(y+height/4), (int)width/4, (int)height/2);
+        return new Rectangle((int)x, (int)(y+height/4), width/4, height/2);
     }
 
     protected void calculateAnimation(){
@@ -137,7 +134,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         texture = animation.getImage();
     }
 
-    //@Override
+    @Override
     public void update() {
         calculateMovement();
         calculateAnimation();
@@ -146,9 +143,9 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     }
 
     protected void collision() {
-        for(int yy=0;yy< level.level.length;yy++) {
+        for(int yy=0;yy< level.level[0].length;yy++) {
             for (int xx=0;xx<level.level.length;xx++) {
-                if(level.level[xx][yy].getBlock().getSolid()){
+                if(level.level[xx][yy].getBlock().testCollision()){
                     if(getBounds().intersects(level.level[xx][yy].getBlock().getBounds())) {
                         y = level.level[xx][yy].getBlock().getY()-height;
                     }

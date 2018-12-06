@@ -11,7 +11,7 @@ public class BlockColorBlockShow extends Block {
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/color_block.png"), 0, 5, 16, 16);
 
     public BlockColorBlockShow(Variation variation){
-        super("block_color_show_" + variation.toString().toLowerCase());
+        super("block_color_show_" + variation.toString().toLowerCase(), false);
         setTexture(variation.texture);
     }
 

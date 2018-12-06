@@ -66,18 +66,14 @@ public class EditorLevel extends Level {
         JSONArray array = new JSONArray(names);
         json.put("level", array);
         try {
-            File file = null;
-            for (boolean valid = false;!valid;){
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setAcceptAllFileFilterUsed(false);
-                fileChooser.setDialogTitle("Save");
-                fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
-                fileChooser.showOpenDialog(null);
-                file = fileChooser.getSelectedFile();
-                if (file.exists()) {
-                    valid = true;
-                }
-            }
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            fileChooser.setDialogTitle("Save");
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
+            fileChooser.showSaveDialog(null);
+            File file = fileChooser.getSelectedFile();
+            file.createNewFile();
+
             FileWriter fw = new FileWriter(file);
             fw.write(json.toString());
             fw.close();
