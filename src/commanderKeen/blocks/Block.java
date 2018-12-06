@@ -82,9 +82,6 @@ public abstract class Block implements Cloneable {
     public int getY(){
         return y;
     }
-    public boolean getSolid() {
-        return solid;
-    }
     public Block createBlock(int x, int y){
         try {
             Block block = (Block)clone();
@@ -138,6 +135,6 @@ public abstract class Block implements Cloneable {
     }
 
     public boolean testCollision() {
-        return !solid;
+        return solid;
     }
 }
