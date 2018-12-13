@@ -3,6 +3,7 @@ package commanderKeen.blocks;
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
 import com.sun.istack.internal.NotNull;
+import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
 
 import javax.imageio.ImageIO;
@@ -113,8 +114,10 @@ public abstract class Block implements Cloneable {
 
     public void render(Graphics2D g2d, int x, int y){
         g2d.drawImage(texture, x, y, null);
-        //g2d.setColor(Color.BLACK);
-        //g2d.draw(getBounds());
+        if (GameFx.debug) {
+            g2d.setColor(Color.BLACK);
+            g2d.draw(getBounds());
+        }
     }
 
     public void renderEditorBlock(Graphics2D g2d, int x, int y){

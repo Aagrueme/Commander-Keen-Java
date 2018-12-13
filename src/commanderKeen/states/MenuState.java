@@ -4,14 +4,14 @@ import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.PositionAnimation;
 import commanderKeen.levels.MenuLevel;
 import commanderKeen.main.Game;
+import commanderKeen.main.GameFx;
 import commanderKeen.main.GamePanel;
 import commanderKeen.menu.Cursor;
 import commanderKeen.util.Button;
+import javafx.scene.input.ScrollEvent;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
 
 public class MenuState extends State {
 
@@ -35,7 +35,7 @@ public class MenuState extends State {
     private boolean active;
 
 	MenuState(GameStateManager gsm) {
-		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
+		super(gsm, GameFx.width / GameFx.ORIGINAL_WIDTH, GameFx.height / GameFx.ORIGINAL_HEIGHT);
 		level = new MenuLevel();
 		cursor = new Cursor();
 		cursor.setX(96);
@@ -50,7 +50,7 @@ public class MenuState extends State {
             cursor.setX(cursorAnimation.getX());
 	        cursor.setY(cursorAnimation.getY());
         }
-        setScale(GamePanel.width / 320d, GamePanel.height / 200d);
+        setScale(GameFx.width / 320d, GameFx.height / 200d);
 	    level.update();
     }
 
@@ -75,10 +75,10 @@ public class MenuState extends State {
     }
 
 	@Override
-	public void keyPressed(KeyEvent e, int k) {
+	public void keyPressed(KeyEvent e) {
         if(active) {
-            switch (k) {
-                case KeyEvent.VK_UP:
+            switch (e.getCode()) {
+                case UP:
                     if (currentCursorYPosition <= 0) {
                         currentCursorYPosition = cursorYPositions.length - 1;
                     } else {
@@ -86,7 +86,7 @@ public class MenuState extends State {
                     }
                     moveCursor();
                     break;
-                case KeyEvent.VK_DOWN:
+                case DOWN:
                     if (currentCursorYPosition >= cursorYPositions.length - 1) {
                         currentCursorYPosition = 0;
                     } else {
@@ -94,7 +94,7 @@ public class MenuState extends State {
                     }
                     moveCursor();
                     break;
-                case KeyEvent.VK_ENTER:
+                case ENTER:
                     buttons[currentCursorYPosition].clicked();
                     break;
             }
@@ -104,7 +104,7 @@ public class MenuState extends State {
 	}
 
     @Override
-	public void keyReleased(KeyEvent e, int k) {
+	public void keyReleased(KeyEvent e) {
 
 	}
 
@@ -119,7 +119,7 @@ public class MenuState extends State {
 	}
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
+    public void mouseWheelMoved(ScrollEvent e) {
 
     }
 

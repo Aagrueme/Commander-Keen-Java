@@ -1,9 +1,9 @@
 package commanderKeen.states;
 
+import javafx.scene.input.ScrollEvent;
+
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
 
 public class LevelState extends State {
 
@@ -22,12 +22,12 @@ public class LevelState extends State {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e, int k) {
+	public void keyPressed(KeyEvent e) {
 
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e, int k) {
+	public void keyReleased(KeyEvent e) {
 
 	}
 
@@ -42,7 +42,7 @@ public class LevelState extends State {
 	}
 
 	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
+	public void mouseWheelMoved(ScrollEvent e) {
 
 	}
 

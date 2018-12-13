@@ -4,6 +4,7 @@ import com.sun.istack.internal.NotNull;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.main.Game;
+import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
 import commanderKeen.util.Camera;
 import commanderKeen.util.LevelSlot;
@@ -37,7 +38,7 @@ public abstract class Level {
         this.height = blocks[0].length;
         this.x = x;
         this.y = y;
-        this.grid = Game.debug;
+        this.grid = GameFx.debug;
     }
 
     @Override

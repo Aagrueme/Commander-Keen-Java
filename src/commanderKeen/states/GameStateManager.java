@@ -1,12 +1,10 @@
 package commanderKeen.states;
 
-import commanderKeen.main.GamePanel;
+import commanderKeen.main.GameFx;
+import javafx.scene.input.ScrollEvent;
 
-import javax.swing.*;
 import java.awt.Graphics2D;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
 
 public class GameStateManager {
     public static final int LOAD_STATE = 0;
@@ -14,7 +12,7 @@ public class GameStateManager {
     public static final int MAP_STATE = 2;
     public static final int LEVEL_STATE = 3;
     public static final int EDITOR_STATE = 4;
-    public JPanel panel;
+    public GameFx game;
 
     public State getState(){
         return states[state];
@@ -54,9 +52,9 @@ public class GameStateManager {
     private EditorState es;
     private State[] states;
 
-    public GameStateManager(int state, GamePanel panel){
+    public GameStateManager(int state, GameFx game){
         this.state = state;
-        this.panel = panel;
+        this.game = game;
         states = new State[5];
         switch (state){
             case EDITOR_STATE:
@@ -83,11 +81,12 @@ public class GameStateManager {
             states[state].renderState(g2d);
         } catch (Exception ignored) {}
     }
-    public void keyPressed(KeyEvent e , int k){
-        states[state].keyPressed(e, k);
+
+    public void keyPressed(KeyEvent e){
+        states[state].keyPressed(e);
     }
-    public void keyReleased(KeyEvent e ,int k){
-        states[state].keyReleased(e, k);
+    public void keyReleased(KeyEvent e){
+        states[state].keyReleased(e);
     }
     public void mousePressed(MouseEvent e){
         states[state].mousePressed(e);
@@ -95,7 +94,7 @@ public class GameStateManager {
     public void mouseReleased(MouseEvent e){
         states[state].mouseReleased(e);
     }
-    public void mouseWheelMoved(MouseWheelEvent e) {
+    public void mouseWheelMoved(ScrollEvent e) {
         states[state].mouseWheelMoved(e);
     }
     public void mouseMoved(MouseEvent e) {

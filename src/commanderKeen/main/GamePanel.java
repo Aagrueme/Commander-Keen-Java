@@ -5,19 +5,18 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import commanderKeen.states.GameStateManager;
 import commanderKeen.util.Mouse;
 
-public class GamePanel extends JPanel implements MouseMotionListener,ComponentListener,ActionListener,KeyListener,MouseListener,MouseWheelListener {
-	
-	private static final long serialVersionUID = 1L;
+public class GamePanel// extends JPanel implements MouseMotionListener,ComponentListener,ActionListener,KeyListener,MouseListener,MouseWheelListener {
+{
+	/*private static final long serialVersionUID = 1L;
 	
 	public static int width;
 	public static int height;
 
     GamePanel(){
         super();
-        setPreferredSize(new Dimension(Game.WIDTH,Game.HEIGHT));
+        setPreferredSize(new Dimension(GameFx.WIDTH,GameFx.HEIGHT));
         addKeyListener(this);
         addMouseListener(this);
         addComponentListener(this);
@@ -26,7 +25,7 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
         setFocusable(true);
         requestFocus();
 
-        Game.mouse = new Mouse(this);
+        GameFx.mouse = new Mouse(this);
         width = getPreferredSize().width;
         height = getPreferredSize().height;
 
@@ -37,10 +36,10 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
                 System.exit(1);
                 break;
             case 0:
-                Game.gsm = new GameStateManager(GameStateManager.EDITOR_STATE, this);
+                //GameFx.gsm = new GameStateManager(GameStateManager.EDITOR_STATE, this);
                 break;
             case 1:
-                Game.gsm = new GameStateManager(GameStateManager.MENU_STATE, this);
+                //GameFx.gsm = new GameStateManager(GameStateManager.MENU_STATE, this);
                 break;
             case 2:
                 System.exit(1);
@@ -54,18 +53,18 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        Game.gsm.render(g2d);
+        GameFx.gsm.render(g2d);
     }
 
     @Override
     public void addNotify(){
         super.addNotify();
-        Timer timer = new Timer(1000 / Game.FPS, this);
+        Timer timer = new Timer(1000 / GameFx.FPS, this);
         timer.start();
     }
 
     private void update() {
-        Game.gsm.update();
+        GameFx.gsm.update();
     }
 
     @Override
@@ -79,12 +78,12 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
 
     @Override
     public void keyPressed(KeyEvent e) {
-        Game.gsm.keyPressed(e, e.getKeyCode());
+        GameFx.gsm.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        Game.gsm.keyReleased(e, e.getKeyCode());
+        GameFx.gsm.keyReleased(e);
     }
 
     @Override
@@ -92,17 +91,17 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
 
     @Override
     public void mousePressed(MouseEvent e) {
-        Game.gsm.mousePressed(e);
+        GameFx.gsm.mousePressed(e);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        Game.gsm.mouseReleased(e);
+        GameFx.gsm.mouseReleased(e);
     }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {
-        Game.gsm.mouseWheelMoved(e);
+        GameFx.gsm.mouseWheelMoved(e);
     }
 
     @Override
@@ -136,11 +135,11 @@ public class GamePanel extends JPanel implements MouseMotionListener,ComponentLi
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        Game.gsm.mouseDragged(e);
+        GameFx.gsm.mouseDragged(e);
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        Game.gsm.mouseMoved(e);
-    }
+        GameFx.gsm.mouseMoved(e);
+    }*/
 }

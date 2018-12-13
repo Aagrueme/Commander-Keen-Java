@@ -5,17 +5,15 @@ import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.levels.EditorLevel;
 import commanderKeen.main.Game;
+import commanderKeen.main.GameFx;
 import commanderKeen.main.GamePanel;
+import javafx.scene.input.ScrollEvent;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
 import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-import java.util.List;
 
 public class EditorState extends State {
 
@@ -29,14 +27,24 @@ public class EditorState extends State {
     private int selected = Blocks.blocks.indexOf(selectedBlock);
 
     EditorState(GameStateManager gsm) {
-        super(gsm, GamePanel.width / 320d, GamePanel.height / 200d);
+        super(gsm, GameFx.width / 320d, GameFx.height / 200d);
 
         int levelWidth = 10;
         int levelHeight = 10;
 
         for (boolean valid = false;!valid;){
             valid = true;
-            String input = JOptionPane.showInputDialog(gsm.panel, "Enter wished width!", "Width", JOptionPane.INFORMATION_MESSAGE);
+
+            JFrame frame = new JFrame("Width");
+
+            frame.setUndecorated(true);
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+
+            String input = JOptionPane.showInputDialog(frame, "Enter wished width!", "Width", JOptionPane.INFORMATION_MESSAGE);
+
+            frame.dispose();
+
             if(input == null){
                 System.exit(0);
             }
@@ -49,7 +57,17 @@ public class EditorState extends State {
 
         for (boolean valid = false;!valid;){
             valid = true;
-            String input = JOptionPane.showInputDialog(gsm.panel, "Enter wished height!", "Height", JOptionPane.INFORMATION_MESSAGE);
+
+            JFrame frame = new JFrame("Width");
+
+            frame.setUndecorated(true);
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+
+            String input = JOptionPane.showInputDialog(frame, "Enter wished height!", "Height", JOptionPane.INFORMATION_MESSAGE);
+
+            frame.dispose();
+
             if(input == null){
                 System.exit(0);
             }
@@ -69,7 +87,7 @@ public class EditorState extends State {
 
     @Override
     public void update() {
-        setScale(GamePanel.width / 320d, GamePanel.height / 200d);
+        setScale(GameFx.width / 320d, GameFx.height / 200d);
         levelBox = new Rectangle(0, 0, (int)(258 * scaleX), (int)(200 * scaleY));
         level.update();
     }
@@ -84,7 +102,7 @@ public class EditorState extends State {
         level.render(g2d);
         g2d.setColor(Color.BLACK);
         g2d.drawLine(258, 0, 258, 200);
-        g2d.setColor(Game.BACKGROUND_COLOR);
+        g2d.setColor(GameFx.BACKGROUND_COLOR);
         g2d.fillRect(259, 0, 61, 200);
 
         for (int i = 0; i < blocks.length; i++) {
@@ -97,19 +115,19 @@ public class EditorState extends State {
     }
 
     @Override
-    public void keyPressed(KeyEvent e, int k) {
-        switch(e.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE:
+    public void keyPressed(KeyEvent e) {
+        switch(e.getCode()) {
+            case ESCAPE:
                 if (level.isGridEnabled()) {
                     level.setGrid(false);
                 }else if(!level.isGridEnabled()){
                     level.setGrid(true);
                 }
                 break;
-            case KeyEvent.VK_ENTER:
+            case S:
                 level.save();
                 break;
-            case KeyEvent.VK_O:
+            case O:
                 level.open();
                 break;
         }
@@ -118,14 +136,14 @@ public class EditorState extends State {
     private boolean mouseWheelPressed = false;
 
     @Override
-    public void keyReleased(KeyEvent e, int k) {
+    public void keyReleased(KeyEvent e) {
 
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (levelBox.contains(e.getPoint())) {
-            if (e.getButton() == MouseEvent.BUTTON2) {
+        if (levelBox.contains(new Point((int)e.getX(), (int)e.getY()))) {
+            if (e.getButton() == MouseButton.MIDDLE) {
                 mouseWheelPressed = true;
             }
         }
@@ -133,26 +151,26 @@ public class EditorState extends State {
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        if (levelBox.contains(e.getPoint())) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
+        if (levelBox.contains(new Point((int)e.getX(), (int)e.getY()))) {
+            if (e.getButton() == MouseButton.PRIMARY) {
                 int blockX = (int)((e.getX() / scaleX - level.getX()) / 16);
                 int blockY = (int)((e.getY() / scaleY - level.getY()) / 16);
                 if(!((blockX > level.width) || (blockY >= level.height))) {
                     level.setBlock(selectedBlock, blockX, blockY);
                 }
-            } else if (e.getButton() == MouseEvent.BUTTON3) {
+            } else if (e.getButton() == MouseButton.SECONDARY) {
                 int blockX = (int)((e.getX() / scaleX - level.getX()) / 16);
                 int blockY = (int)((e.getY() / scaleY - level.getY()) / 16);
                 if(!((blockX > level.width) || (blockY >= level.height))) {
                     level.setBlock(Blocks.BLOCK_AIR, blockX, blockY);
                 }
-            }else if(e.getButton() == MouseEvent.BUTTON2) {
+            }else if(e.getButton() == MouseButton.MIDDLE) {
                 mouseWheelPressed = false;
             }
         }else{
             for (int i = 0; i < blocks.length; i++) {
                 Rectangle rect = new Rectangle((int)((259 + (10 + i % 2 * 26)) * scaleX), (int)((((10 + (i / 2 * 16 + i / 2 * 10))) + blocksBoxY) * scaleY), (int)(16 * scaleX), (int)(16 * scaleY));
-                if (rect.contains(e.getPoint())){
+                if (rect.contains(new Point((int)e.getX(), (int)e.getY()))){
                     selectedBlock = Blocks.blocks.get(i);
                     selected = i;
                     break;
@@ -162,13 +180,13 @@ public class EditorState extends State {
     }
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-        if(!levelBox.contains(e.getPoint())) {
-            if (e.getWheelRotation() < 0) {
+    public void mouseWheelMoved(ScrollEvent e) {
+        if(!levelBox.contains(new Point((int)e.getX(), (int)e.getY()))) {
+            if (e.getDeltaY() < 0) {
                 if (blocksBoxY != 0) {
                     blocksBoxY += 5;
                 }
-            } else if (e.getWheelRotation() > 0) {
+            } else if (e.getDeltaY() > 0) {
                 if (abs(blocksBoxY) <= ((blocks.length /2 + blocks.length % 2) * 26) - 190)
                     blocksBoxY -= 5;
             }
@@ -179,7 +197,7 @@ public class EditorState extends State {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        mousePoint = e.getPoint();
+        mousePoint = new Point((int)e.getX(), (int)e.getY());
     }
 
     private double abs(double d){
@@ -198,10 +216,10 @@ public class EditorState extends State {
                 if (level.getY() + y <= 0 && level.getY() + y + level.height * 16 >= 200) {
                     level.setY(level.getY() + y);
                 }
-                mousePoint = e.getPoint();
+                mousePoint = new Point((int)e.getX(), (int)e.getY());
             }
         }else {
-            mousePoint = e.getPoint();
+            mousePoint = new Point((int)e.getX(), (int)e.getY());
         }
     }
 }

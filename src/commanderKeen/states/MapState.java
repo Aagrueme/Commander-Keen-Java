@@ -4,13 +4,15 @@ import aagrueme.com.github.api.ImageLoader;
 import commanderKeen.entitiy.mob.MapKeen;
 import commanderKeen.levels.MapLevel;
 import commanderKeen.main.Game;
+import commanderKeen.main.GameFx;
 import commanderKeen.main.GamePanel;
 import commanderKeen.util.Camera;
+import javafx.scene.input.ScrollEvent;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
+
+import static javafx.scene.input.KeyCode.D;
 
 public class MapState extends State {
 
@@ -19,7 +21,7 @@ public class MapState extends State {
 	MapKeen keen;
 
 	public MapState(GameStateManager gsm) {
-		super(gsm, GamePanel.width / Game.ORIGINAL_WIDTH, GamePanel.height / Game.ORIGINAL_HEIGHT);
+		super(gsm, GameFx.width / GameFx.ORIGINAL_WIDTH, GameFx.height / GameFx.ORIGINAL_HEIGHT);
         level = new MapLevel();
         keen = new MapKeen(level);
         camera = new Camera(keen);
@@ -27,7 +29,7 @@ public class MapState extends State {
 
 	@Override
 	public void update() {
-		setScale(GamePanel.width / 320d, GamePanel.height / 200d);
+		setScale(GameFx.width / 320d, GameFx.height / 200d);
 		level.update();
         camera.update();
 		keen.update();
@@ -43,30 +45,22 @@ public class MapState extends State {
 	}
 
 	@Override
-	public void keyPressed(KeyEvent e, int k) {
-	    switch (k){
-            case KeyEvent.VK_W:
-                keen.setUp(true);
-                break;
-            case KeyEvent.VK_S:
-                keen.setDown(true);
-                break;
-            case KeyEvent.VK_A:
-                keen.setLeft(true);
-                break;
-            case KeyEvent.VK_D:
-                keen.setRight(true);
-                break;
+	public void keyPressed(KeyEvent e) {
+	    switch (e.getCode()){
+			case W: keen.setUp(true);break;
+            case S: keen.setDown(true);break;
+            case A: keen.setLeft(true);break;
+            case D: keen.setRight(true);break;
         }
 	}
 
 	@Override
-	public void keyReleased(KeyEvent e, int k) {
-	    switch (k){
-            case KeyEvent.VK_W:keen.setUp(false);break;
-            case KeyEvent.VK_A:keen.setLeft(false);break;
-            case KeyEvent.VK_S:keen.setDown(false);break;
-            case KeyEvent.VK_D:keen.setRight(false);break;
+	public void keyReleased(KeyEvent e) {
+        switch (e.getCode()){
+            case W: keen.setUp(false);break;
+            case S: keen.setDown(false);break;
+            case A: keen.setLeft(false);break;
+            case D: keen.setRight(false);break;
         }
 	}
 
@@ -81,7 +75,7 @@ public class MapState extends State {
 	}
 
 	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
+	public void mouseWheelMoved(ScrollEvent e) {
 
 	}
 

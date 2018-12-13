@@ -3,6 +3,7 @@ package commanderKeen.entitiy.mob;
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.Spritesheet;
 import commanderKeen.levels.Level;
+import commanderKeen.main.GameFx;
 import commanderKeen.util.IHasRenderer;
 import commanderKeen.util.IHasUpdater;
 
@@ -54,13 +55,15 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         this.texture = animation.getImage();
     }
 
-    //@Override
+    @Override
     public void render(Graphics2D g2d) {
         AffineTransform transform = g2d.getTransform();
         g2d.setTransform(AffineTransform.getTranslateInstance( g2d.getTransform().getTranslateX() + x, g2d.getTransform().getTranslateY() + y));
         g2d.drawImage(texture, 0, 0, null);
         g2d.setTransform(transform);
-        //drawHitBox(g2d);
+        if (GameFx.debug) {
+            drawHitBox(g2d);
+        }
 
     }
 

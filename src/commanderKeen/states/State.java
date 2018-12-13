@@ -1,12 +1,13 @@
 package commanderKeen.states;
 
 import commanderKeen.main.Game;
+import commanderKeen.main.GameFx;
+import javafx.scene.input.ScrollEvent;
 
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseWheelEvent;
+import javafx.scene.input.*;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.awt.image.VolatileImage;
 
 public abstract class State {
@@ -30,21 +31,21 @@ public abstract class State {
     public abstract void update();
     protected abstract void render(Graphics2D g);
     void renderState(Graphics2D g){
-        VolatileImage img = gsm.panel.createVolatileImage((int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
+        BufferedImage img = new BufferedImage((int)GameFx.ORIGINAL_WIDTH, (int)GameFx.ORIGINAL_HEIGHT, BufferedImage.TYPE_INT_ARGB);
         Graphics2D g2d = img.createGraphics();
         Color color = g2d.getColor();
-        g2d.setColor(Game.BACKGROUND_COLOR);
-        g2d.fillRect(0, 0, (int)Game.ORIGINAL_WIDTH, (int)Game.ORIGINAL_HEIGHT);
+        g2d.setColor(GameFx.BACKGROUND_COLOR);
+        g2d.fillRect(0, 0, (int)GameFx.ORIGINAL_WIDTH, (int)GameFx.ORIGINAL_HEIGHT);
         g2d.setColor(color);
         render(g2d);
         g.setTransform(AffineTransform.getScaleInstance(scaleX, scaleY));
         g.drawImage(img, 0, 0, null);
     }
-    public abstract void keyPressed(KeyEvent e, int k);
-    public abstract void keyReleased(KeyEvent e, int k);
+    public abstract void keyPressed(KeyEvent e);
+    public abstract void keyReleased(KeyEvent e);
     public abstract void mousePressed(MouseEvent e);
     public abstract void mouseReleased(MouseEvent e);
-    public abstract void mouseWheelMoved(MouseWheelEvent e);
+    public abstract void mouseWheelMoved(ScrollEvent e);
     public abstract void mouseMoved(MouseEvent e);
     public abstract void mouseDragged(MouseEvent e);
 }

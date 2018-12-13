@@ -12,9 +12,9 @@ import java.lang.management.ManagementFactory;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class Game extends JFrame implements ComponentListener {
-
-    public static final Color BACKGROUND_COLOR = new Color(168, 168, 168);
+public class Game// extends JFrame implements ComponentListener {
+{
+    /*public static final Color BACKGROUND_COLOR = new Color(168, 168, 168);
     static final long serialVersionUID = 1L;
 
 	public static final boolean originalSize = true;
@@ -100,5 +100,5 @@ public class Game extends JFrame implements ComponentListener {
     @Override
     public void componentHidden(ComponentEvent e) {
 
-    }
+    }*/
 }
