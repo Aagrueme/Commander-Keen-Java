@@ -1,5 +1,6 @@
 package commanderKeen.levels;
 
+import com.blogspot.debukkitsblog.util.FileStorage;
 import commanderKeen.blocks.Block;
 import commanderKeen.levels.Level;
 import commanderKeen.util.LevelSlot;
@@ -11,9 +12,11 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EditorLevel extends Level {
     public EditorLevel(int width, int height) {
@@ -58,25 +61,58 @@ public class EditorLevel extends Level {
     }
 
     public void save(){
-        JSONObject json = new JSONObject();
-        String names[] = new String[blocks.size()];
-        for (int i = 0; i < blocks.size(); i++) {
-            names[i] = blocks.get(i).getRegistryName();
-        }
-        JSONArray array = new JSONArray(names);
-        json.put("level", array);
         try {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.setDialogTitle("Save");
             fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Only level files!", "level"));
             fileChooser.showSaveDialog(null);
             File file = fileChooser.getSelectedFile();
-            file.createNewFile();
+            if (file.getPath().endsWith(".json")) {
+                JSONObject json = new JSONObject();
+                String names[] = new String[blocks.size()];
+                for (int i = 0; i < blocks.size(); i++) {
+                    names[i] = blocks.get(i).getRegistryName();
+                }
+                JSONArray array = new JSONArray(names);
+                json.put("level", array);
 
-            FileWriter fw = new FileWriter(file);
-            fw.write(json.toString());
-            fw.close();
+                //save Json
+
+                file.createNewFile();
+
+                FileWriter fw = new FileWriter(file);
+                fw.write(json.toString());
+                fw.close();
+            }
+            if (file.getPath().endsWith(".level")){
+                FileStorage storage = null;
+                try {
+                    storage = new FileStorage(file);
+                }catch (EOFException ignored){
+                    JFrame frame = new JFrame("Error");
+
+                    frame.setUndecorated(true);
+                    frame.setVisible(true);
+                    frame.setLocationRelativeTo(null);
+
+                    JOptionPane.showMessageDialog(frame, "The selected File is corrupted!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                    frame.dispose();
+
+                    save();
+                }
+
+                String names[] = new String[blocks.size()];
+                for (int i = 0; i < blocks.size(); i++) {
+                    names[i] = blocks.get(i).getRegistryName();
+                }
+
+                assert storage != null;
+                storage.store("level", names);
+                storage.save();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -89,6 +125,7 @@ public class EditorLevel extends Level {
             fileChooser.setAcceptAllFileFilterUsed(false);
             fileChooser.setDialogTitle("Open");
             fileChooser.setFileFilter(new FileNameExtensionFilter("Only json files!", "json"));
+            fileChooser.setFileFilter(new FileNameExtensionFilter("Only level files!", "level"));
             fileChooser.showOpenDialog(null);
             file = fileChooser.getSelectedFile();
             if (file.exists()) {
@@ -101,4 +138,5 @@ public class EditorLevel extends Level {
             e.printStackTrace();
         }
     }
+
 }

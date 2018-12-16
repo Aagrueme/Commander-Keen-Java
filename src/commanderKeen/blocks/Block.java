@@ -2,7 +2,6 @@ package commanderKeen.blocks;
 
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
-import com.sun.istack.internal.NotNull;
 import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
 
@@ -10,8 +9,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.io.Serializable;
 
-public abstract class Block implements Cloneable {
+public abstract class Block implements Cloneable, Serializable {
 
     private int x;
     private int y;

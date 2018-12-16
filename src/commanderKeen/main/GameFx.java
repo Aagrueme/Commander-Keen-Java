@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -70,9 +72,8 @@ public class GameFx extends Application {
 
         window = primaryStage;
         window.setTitle("Commander Keen ");
-        window.setOnCloseRequest(event -> {
-            System.exit(0);
-        });
+        window.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.F10));
+        window.setOnCloseRequest(event -> System.exit(0));
 
         BorderPane layout = new BorderPane();
         WritableImage wi = SwingFXUtils.toFXImage(bf, null);
@@ -172,7 +173,12 @@ public class GameFx extends Application {
 
     private void setListeners(Scene scene){
         scene.setOnKeyPressed(event -> gsm.keyPressed(event));
-        scene.setOnKeyReleased(event -> gsm.keyReleased(event));
+        scene.setOnKeyReleased(event -> {
+            if(event.getCode() == KeyCode.F10 && !window.isFullScreen()) {
+                window.setFullScreen(true);
+            }
+            gsm.keyReleased(event);
+        });
         scene.setOnMousePressed(event -> gsm.mousePressed(event));
         scene.setOnMouseReleased(event -> gsm.mouseReleased(event));
         scene.setOnMouseMoved(event -> gsm.mouseMoved(event));

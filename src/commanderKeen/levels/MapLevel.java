@@ -10,7 +10,7 @@ public class MapLevel extends Level {
     public MapLevel() {
         super(new LevelSlot[57][60], 0, 0);
         try {
-            setBlocks(convertFileToLevelData(ResourceLoader.load("commanderKeen/levels/map_level.json")));
+            setBlocks(convertLevelFileToLevelData(ResourceLoader.load("commanderKeen/levels/map_level.level")));
         } catch (IOException e) {
             e.printStackTrace();
         }

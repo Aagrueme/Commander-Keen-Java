@@ -1,16 +1,17 @@
 package commanderKeen.levels;
 
+import com.blogspot.debukkitsblog.util.FileStorage;
+import com.blogspot.debukkitsblog.util.InputStorage;
 import com.sun.istack.internal.NotNull;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
-import commanderKeen.main.Game;
 import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
-import commanderKeen.util.Camera;
 import commanderKeen.util.LevelSlot;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.io.*;
@@ -109,7 +110,7 @@ public abstract class Level {
         init();
     }
 
-    protected ArrayList<Block> convertFileToLevelData(InputStream file) throws IOException {
+    protected ArrayList<Block> convertJsonFileToLevelData(InputStream file) throws IOException {
         JSONArray array = new JSONObject(new BufferedReader(new InputStreamReader(file)).readLine()).getJSONArray("level");
         ArrayList<Block> list = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
@@ -119,18 +120,76 @@ public abstract class Level {
         return list;
     }
 
-    protected ArrayList<Block> convertFileToLevelData(File file) throws IOException {
-        JSONArray array = new JSONObject(new BufferedReader(new FileReader(file)).readLine()).getJSONArray("level");
+    protected ArrayList<Block> convertLevelFileToLevelData(InputStream file) throws IOException {
+        String names[] = (String[]) new InputStorage(file).get("level");
         ArrayList<Block> list = new ArrayList<>();
-        for (int i = 0; i < array.length(); i++) {
-            Block block = GameRegistry.getBlock(array.getString(i));
+        for (int i = 0; i < names.length; i++) {
+            Block block = GameRegistry.getBlock(names[i]);
             list.add(i, block);
         }
         return list;
     }
 
     protected ArrayList<Block> convertFileToLevelData(String path) throws IOException {
-        return convertFileToLevelData(new File(path));
+        if(path.endsWith(".json")){
+        return convertJsonFileToLevelData(new File(path));
+        }else if(path.endsWith(".level")){
+            return convertLevelFileToLevelData(new File(path));
+        }else{
+            return null;
+        }
+    }
+
+    protected ArrayList<Block> convertFileToLevelData(File file) throws IOException {
+        if(file.getPath().endsWith(".json")){
+            return convertJsonFileToLevelData(file);
+        }else if(file.getPath().endsWith(".level")){
+            return convertLevelFileToLevelData(file);
+        }else{
+            return null;
+        }
+    }
+
+    private ArrayList<Block> convertLevelFileToLevelData(File file) throws IOException {
+        try {
+            FileStorage storage = null;
+            try {
+                storage = new FileStorage(file);
+            } catch (EOFException ignored) {
+                JFrame frame = new JFrame("Error");
+
+                frame.setUndecorated(true);
+                frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
+
+                JOptionPane.showMessageDialog(frame, "The selected File is corrupted!", "Error", JOptionPane.ERROR_MESSAGE);
+
+                frame.dispose();
+            }
+
+            assert storage != null;
+            ArrayList<Block> list = new ArrayList<>();
+            String names[] = (String[])storage.get("level");
+            for (String name:names) {
+                list.add(GameRegistry.getBlock(name));
+            }
+            return list;
+
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<Block> convertJsonFileToLevelData(File file) throws IOException {
+        JSONArray array = new JSONObject(new BufferedReader(new FileReader(file)).readLine()).getJSONArray("level");
+        ArrayList<Block> list = new ArrayList<>();
+        System.out.println("read");
+        for (int i = 0; i < array.length(); i++) {
+            Block block = GameRegistry.getBlock(array.getString(i));
+            list.add(i, block);
+        }
+        return list;
     }
 
     public void setX(double x) {
