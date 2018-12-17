@@ -16,6 +16,8 @@ public class MapKeen extends Keen {
 
     {
         idle = DOWN;
+        width = 12;
+        speed = 1;
     }
 
     public MapKeen(Level level) {

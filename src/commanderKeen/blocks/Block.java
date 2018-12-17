@@ -2,6 +2,7 @@ package commanderKeen.blocks;
 
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
+import commanderKeen.entitiy.mob.Keen;
 import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
 
@@ -137,7 +138,7 @@ public abstract class Block implements Cloneable, Serializable {
         return registryName;
     }
 
-    public boolean testCollision() {
+    public boolean isSolid() {
         return solid;
     }
 }

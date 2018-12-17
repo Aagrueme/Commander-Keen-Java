@@ -114,7 +114,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         return new Rectangle(((int)x+(width/2)-((width/2)/2)), (int)y, width/2, height/2);
     }
     protected Rectangle getBoundsRight() {
-        return new Rectangle(((int)x+width/4*3), (int)(y+height/4), width/4, height/2);
+        return new Rectangle(((int)x+(width/4*3)), (int)(y+height/4), width/4, height/2);
     }
     protected Rectangle getBoundsLeft() {
         return new Rectangle((int)x, (int)(y+height/4), width/4, height/2);
@@ -148,21 +148,28 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected void collision() {
         for(int yy=0;yy< level.level[0].length;yy++) {
             for (int xx=0;xx<level.level.length;xx++) {
-                if(level.level[xx][yy].getBlock().testCollision()){
-                    if(getBounds().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                        y = level.level[xx][yy].getBlock().getY()-height;
+                if(getBounds().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                    if(level.level[xx][yy].getBlock().isSolid()) {
+                        y = level.level[xx][yy].getBlock().getBounds().getY() - height;
                     }
-                    if(getBoundsTop().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                        y = level.level[xx][yy].getBlock().getY()+height;
+                }
+                if(getBoundsTop().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                    if(level.level[xx][yy].getBlock().isSolid()){
+                        y = level.level[xx][yy].getBlock().getBounds().getY()+height;
                     }
-                    if(getBoundsRight().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                        x = level.level[xx][yy].getBlock().getX()-width;
+                }
+                if(getBoundsRight().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                    if(level.level[xx][yy].getBlock().isSolid()){
+                        x = level.level[xx][yy].getBlock().getBounds().getX()-width;
                     }
-                    if(getBoundsLeft().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                        x = level.level[xx][yy].getBlock().getX()+width;
+                }
+                if(getBoundsLeft().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                    if(level.level[xx][yy].getBlock().isSolid()){
+                        x = level.level[xx][yy].getBlock().getBounds().getX()+width;
                     }
                 }
             }
+
         }
     }
 }

@@ -48,4 +48,8 @@ public class Blocks {
 
     public static final BlockAir BLOCK_AIR = new BlockAir();
     public static final BlockNull BLOCK_NULL = new BlockNull();
+
+    public static void init() {
+
+    }
 }

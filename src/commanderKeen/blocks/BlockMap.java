@@ -3,17 +3,34 @@ package commanderKeen.blocks;
 import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.Spritesheet;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static commanderKeen.blocks.BlockMap.Variation.block_11;
+import static commanderKeen.blocks.BlockMap.Variation.block_8;
 
 public class BlockMap extends Block {
 
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map.png"), 0, 25, 16, 16);
+    private Variation variation;
 
-    public BlockMap(Variation variation) {
+    BlockMap(Variation variation) {
         super("block_map_" + variation.name().toLowerCase());
+        this.variation = variation;
         setTexture(variation.texture);
     }
-    
+
+    @Override
+    public Rectangle getBounds() {
+        if (variation.equals(block_11)) {
+            return new Rectangle(getX() + 5, getY(), 11, 16);
+        } else if(variation.equals(block_8)){
+            return new Rectangle(getX() + 5, getY(), 11, 16);
+        }else{
+            return super.getBounds();
+        }
+    }
+
     public enum Variation{
         block_1(variationSprite.getImage(0)),
         block_2(variationSprite.getImage(1)),

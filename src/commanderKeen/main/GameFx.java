@@ -71,7 +71,7 @@ public class GameFx extends Application {
         bf = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
         window = primaryStage;
-        window.setTitle("Commander Keen ");
+        window.setTitle("Commander Keen");
         window.setFullScreenExitKeyCombination(new KeyCodeCombination(KeyCode.F10));
         window.setOnCloseRequest(event -> System.exit(0));
 
@@ -95,10 +95,9 @@ public class GameFx extends Application {
         setListeners(scene);
 
         //init blocks
-        Blocks.BLOCK_NULL.getRegistryName();
+        Blocks.init();
 
         window.setScene(scene);
-        window.show();
 
         JFrame frame = new JFrame("Do you want to open the editor?");
 
@@ -128,6 +127,7 @@ public class GameFx extends Application {
         new Thread(this::run).start();
 
         instance = this;
+        window.show();
     }
 
     private void update() {
