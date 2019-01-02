@@ -16,12 +16,11 @@ public class MapKeen extends Keen {
 
     {
         idle = DOWN;
-        width = 9;
         speed = 1;
     }
 
     public MapKeen(Level level) {
-        super(level, 16 * 4, 16 * 33, 8, 16, new Animation(animationSprite, 3, 3, 71), idleSprite);
+        super(level, 16 * 4, 16 * 33, 14, 16, new Animation(animationSprite, 3, 3, 71), idleSprite);
     }
 
     @Override

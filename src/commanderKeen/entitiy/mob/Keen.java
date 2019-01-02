@@ -39,8 +39,8 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected float speed = 2;
     protected int idle = DOWN;
 
-    protected int width = 16;
-    protected int height = 16;
+    protected int width;
+    protected int height;
 
     private Rectangle boundsBottom;
     private Rectangle boundsTop;
@@ -62,15 +62,15 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         this.texture = animation.getImage();
 
 
-        int middleBoundsWidth = (int) Math.ceil(width / 2.0);
+        int middleBoundsWidth = (int) Math.floor(width / 2.0);
 
-        this.boundsBottom = new Rectangle(width /2 /2, height /2, middleBoundsWidth, (int) Math.ceil(height /2.0));
+        this.boundsLeft = new Rectangle(0, (int) Math.floor(Math.floor(height /2.0) /2.0), (int) Math.ceil((width - middleBoundsWidth) / 2.0), (int) Math.ceil(height /2.0));
 
-        this.boundsTop = new Rectangle(width /2 /2, 0, middleBoundsWidth, (int) Math.floor(height/2.0));
+        this.boundsTop = new Rectangle(boundsLeft.width, 0, middleBoundsWidth, (int) Math.floor(height/2.0));
 
-        this.boundsRight = new Rectangle(width /4 * 3, height /4, (int) Math.ceil((width - middleBoundsWidth) / 2.0), (int) Math.ceil(height/2.0));
+        this.boundsBottom = new Rectangle(boundsTop.x, boundsTop.height, middleBoundsWidth, (int) Math.ceil(height /2.0));
 
-        this.boundsLeft = new Rectangle(0, height /4, (int) Math.floor((width - middleBoundsWidth) / 2.0), (int) Math.ceil(height /2.0));
+        this.boundsRight = new Rectangle(boundsLeft.width + middleBoundsWidth, boundsLeft.y, (int) Math.ceil((width - middleBoundsWidth) / 2.0), (int) Math.floor(height/2.0));
     }
 
     @Override
@@ -168,22 +168,30 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
             for (int xx=0;xx<level.level.length;xx++) {
                 if(getBoundsBottom().intersects(level.level[xx][yy].getBlock().getBounds())) {
                     if(level.level[xx][yy].getBlock().isSolid()) {
-                        y = level.level[xx][yy].getBlock().getBounds().getY() - height;
+                        if(dy > 0) {
+                            dy = 0;
+                        }
                     }
                 }
                 if(getBoundsTop().intersects(level.level[xx][yy].getBlock().getBounds())) {
                     if(level.level[xx][yy].getBlock().isSolid()){
-                        y = level.level[xx][yy].getBlock().getBounds().getY()+height;
+                        if(dy < 0) {
+                            dy = 0;
+                        }
                     }
                 }
                 if(getBoundsRight().intersects(level.level[xx][yy].getBlock().getBounds())) {
                     if(level.level[xx][yy].getBlock().isSolid()){
-                        x = level.level[xx][yy].getBlock().getBounds().getX()-width;
+                        if(dx > 0) {
+                            dx = 0;
+                        }
                     }
                 }
                 if(getBoundsLeft().intersects(level.level[xx][yy].getBlock().getBounds())) {
                     if(level.level[xx][yy].getBlock().isSolid()){
-                        x = level.level[xx][yy].getBlock().getBounds().getX()+width;
+                        if(dx < 0) {
+                            dx = 0;
+                        }
                     }
                 }
             }
