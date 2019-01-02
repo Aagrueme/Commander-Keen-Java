@@ -2,19 +2,14 @@ package commanderKeen.main;
 
 import commanderKeen.blocks.Blocks;
 import commanderKeen.states.GameStateManager;
-import commanderKeen.util.Mouse;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.embed.swing.SwingNode;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import javax.swing.*;

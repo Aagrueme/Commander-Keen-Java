@@ -2,8 +2,6 @@ package commanderKeen.blocks;
 
 import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.Spritesheet;
-import commanderKeen.main.Game;
-import commanderKeen.states.MapState;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

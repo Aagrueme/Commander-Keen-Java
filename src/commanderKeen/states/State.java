@@ -1,6 +1,5 @@
 package commanderKeen.states;
 
-import commanderKeen.main.Game;
 import commanderKeen.main.GameFx;
 import javafx.scene.input.ScrollEvent;
 
@@ -8,7 +7,6 @@ import java.awt.*;
 import javafx.scene.input.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.awt.image.VolatileImage;
 
 public abstract class State {
 

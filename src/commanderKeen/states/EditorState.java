@@ -4,9 +4,7 @@ import aagrueme.com.github.api.ImageLoader;
 import commanderKeen.blocks.Block;
 import commanderKeen.blocks.Blocks;
 import commanderKeen.levels.EditorLevel;
-import commanderKeen.main.Game;
 import commanderKeen.main.GameFx;
-import commanderKeen.main.GamePanel;
 import javafx.scene.input.ScrollEvent;
 
 import javax.swing.*;
