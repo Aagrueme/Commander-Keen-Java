@@ -1,9 +1,11 @@
 package commanderKeen.entitiy.mob;
 
 import aagrueme.com.github.api.Animation;
+import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.Spritesheet;
 import commanderKeen.levels.Level;
 import commanderKeen.main.GameFx;
+import commanderKeen.states.State;
 import commanderKeen.util.IHasRenderer;
 import commanderKeen.util.IHasUpdater;
 
@@ -16,28 +18,22 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected static final int DOWN = 1;
     protected static final int LEFT = 2;
     protected static final int UP = 3;
-    public double camToY;
-    public double camToX;
 
     public boolean right = false;
     public boolean left = false;
+    public boolean up = false;
+    public boolean down = false;
     public boolean jump = false;
     public boolean falling = false;
-    protected final float GRAVITY = 0.2F;
-    protected final float MAX_FALLING_SPEED = 4.5F;
-    protected float jumpStart = -4.0F;
-
-    protected double x;
-    protected double y;
-    protected Animation animation;
-    protected Spritesheet idleSprite;
 
     protected double dx;
     protected double dy;
 
     protected Level level;
     protected float speed = 2;
-    protected int idle = DOWN;
+
+    protected double x;
+    protected double y;
 
     protected int width;
     protected int height;
@@ -47,19 +43,29 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     private Rectangle boundsRight;
     private Rectangle boundsLeft;
 
-    protected BufferedImage texture;
-    private double jumpHeight = 4.5f;
+    public double camToY;
+    public double camToX;
 
-    public Keen(Level level, double x, double y, int width, int height, Animation animation, Spritesheet idleSprite){
+    protected Animation animation;
+
+    protected State state;
+
+    private static Spritesheet idleSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 0, 16, 16);
+
+    protected int idle = DOWN;
+
+    protected BufferedImage texture;
+
+    public Keen(Level level, double x, double y, int width, int height, Animation animation, State state) {
         this.level = level;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.animation = animation;
-        this.idleSprite = idleSprite;
         this.animation.startAnimation();
         this.texture = animation.getImage();
+        this.state = state;
 
 
         int middleBoundsWidth = (int) Math.floor(width / 2.0);
@@ -70,7 +76,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
         this.boundsBottom = new Rectangle(boundsTop.x, boundsTop.height, middleBoundsWidth, (int) Math.ceil(height /2.0));
 
-        this.boundsRight = new Rectangle(boundsLeft.width + middleBoundsWidth, boundsLeft.y, (int) Math.ceil((width - middleBoundsWidth) / 2.0), (int) Math.floor(height/2.0));
+        this.boundsRight = new Rectangle(boundsLeft.width + middleBoundsWidth, boundsLeft.y, boundsLeft.width, boundsLeft.height);
     }
 
     @Override
@@ -85,20 +91,82 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     }
 
-    private void drawHitBox(Graphics2D g2d){
-        g2d.setColor(Color.RED);
-        g2d.draw(getBoundsBottom());
-        g2d.draw(getBoundsRight());
-        g2d.draw(getBoundsLeft());
-        g2d.draw(getBoundsTop());
+    @Override
+    public void update() {
+        calculateMovement();
+
+        //TODO: "calculateAnimation();" and "collision();" can be switched to enable or disable animation while a collision occurs. -currently disabled
+        collision();
+        calculateAnimation();
+
+        move();
     }
 
-    public double getX() {
-        return x;
+    protected void calculateMovement() {
+        if(left) dx = -speed;
+        if(right) dx = speed;
+        if(up) dy = -speed;
+        if(down) dy = speed;
     }
 
-    public double getY() {
-        return y;
+    protected void collision() {
+        for(int yy=0;yy< level.level[0].length;yy++) {
+            for (int xx=0;xx<level.level.length;xx++) {
+                if(level.level[xx][yy].getBlock().collision(getBoundsBottom())) {
+                    if(dy > 0) {
+                        dy = 0;
+                    }
+                }
+                if(level.level[xx][yy].getBlock().collision(getBoundsTop())) {
+                    if(dy < 0) {
+                        dy = 0;
+                    }
+                }
+                if(level.level[xx][yy].getBlock().collision(getBoundsRight())) {
+                    if(dx > 0) {
+                        dx = 0;
+                    }
+
+                }
+                if(level.level[xx][yy].getBlock().collision(getBoundsLeft())) {
+                    if(dx < 0) {
+                        dx = 0;
+                    }
+                }
+            }
+
+        }
+    }
+
+    protected void calculateAnimation() {
+        animation.update();
+        if(dx > 0) {
+            if(animation.getCurrentState() != RIGHT) {
+                animation.setState(RIGHT);
+                idle = RIGHT;
+            }
+            texture = animation.getImage();
+        } else if(dx < 0) {
+            if(animation.getCurrentState() != LEFT) {
+                animation.setState(LEFT);
+                idle = LEFT;
+            }
+            texture = animation.getImage();
+        }else if(dy > 0) {
+            if(animation.getCurrentState() != DOWN) {
+                animation.setState(DOWN);
+                idle = DOWN;
+            }
+            texture = animation.getImage();
+        } else if(dy < 0) {
+            if(animation.getCurrentState() != UP) {
+                animation.setState(UP);
+                idle = UP;
+            }
+            texture = animation.getImage();
+        }else if(dx == 0 && dy == 0) {
+            texture = idleSprite.getImage(idle, 0);
+        }
     }
 
     protected void move() {
@@ -110,92 +178,32 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         dy = 0;
     }
 
-    protected void calculateMovement() {
-        if(left) dx = -speed;
-        if(right) dx = speed;
-
-        if(falling && !jump) {
-            dy += GRAVITY;
-            if(dy > MAX_FALLING_SPEED) dy = MAX_FALLING_SPEED;
-        }
-
-        if(jump && !falling) {
-            dy = jumpStart;
-            jump = false;
-            falling = true;
-        }
+    private void drawHitBox(Graphics2D g2d){
+        g2d.setColor(Color.RED);
+        g2d.draw(getBoundsBottom());
+        g2d.draw(getBoundsRight());
+        g2d.draw(getBoundsLeft());
+        g2d.draw(getBoundsTop());
     }
+
     protected Rectangle getBoundsBottom() {
-        return new Rectangle((int)x + boundsBottom.x, (int)(y + boundsBottom.y), boundsBottom.width, boundsBottom.height);
+        return new Rectangle((int)x + boundsBottom.x, (int)y + boundsBottom.y, boundsBottom.width, boundsBottom.height);
     }
     protected Rectangle getBoundsTop() {
         return new Rectangle((int)x + boundsTop.x, (int)y, boundsTop.width, boundsTop.height);
     }
     protected Rectangle getBoundsRight() {
-        return new Rectangle((int)x + boundsRight.x, (int)(y+boundsRight.y), boundsRight.width, boundsRight.height);
+        return new Rectangle((int)x + boundsRight.x, (int)y+boundsRight.y, boundsRight.width, boundsRight.height);
     }
     protected Rectangle getBoundsLeft() {
         return new Rectangle((int)x, (int)y + boundsLeft.y, boundsLeft.width, boundsLeft.height);
     }
 
-    protected void calculateAnimation(){
-        animation.update();
-        if(dx > 0 && animation.getCurrentState() != LEFT) {
-            animation.setState(LEFT);
-            idle = LEFT;
-            texture = animation.getImage();
-        } else if(dx < 0 && animation.getCurrentState() != RIGHT) {
-            animation.setState(RIGHT);
-            idle = RIGHT;
-            texture = animation.getImage();
-        }else if(dx == 0) {
-            texture = idleSprite.getImage(idle, 0);
-            return;
-        }
-        texture = animation.getImage();
+    public double getX() {
+        return x;
     }
 
-    @Override
-    public void update() {
-        calculateMovement();
-        calculateAnimation();
-        collision();
-        move();
-    }
-
-    protected void collision() {
-        for(int yy=0;yy< level.level[0].length;yy++) {
-            for (int xx=0;xx<level.level.length;xx++) {
-                if(getBoundsBottom().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                    if(level.level[xx][yy].getBlock().isSolid()) {
-                        if(dy > 0) {
-                            dy = 0;
-                        }
-                    }
-                }
-                if(getBoundsTop().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                    if(level.level[xx][yy].getBlock().isSolid()){
-                        if(dy < 0) {
-                            dy = 0;
-                        }
-                    }
-                }
-                if(getBoundsRight().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                    if(level.level[xx][yy].getBlock().isSolid()){
-                        if(dx > 0) {
-                            dx = 0;
-                        }
-                    }
-                }
-                if(getBoundsLeft().intersects(level.level[xx][yy].getBlock().getBounds())) {
-                    if(level.level[xx][yy].getBlock().isSolid()){
-                        if(dx < 0) {
-                            dx = 0;
-                        }
-                    }
-                }
-            }
-
-        }
+    public double getY() {
+        return y;
     }
 }

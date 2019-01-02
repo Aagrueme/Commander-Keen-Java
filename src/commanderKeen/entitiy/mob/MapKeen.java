@@ -5,72 +5,59 @@ import aagrueme.com.github.api.ImageLoader;
 import aagrueme.com.github.api.Spritesheet;
 import commanderKeen.levels.Level;
 
+import commanderKeen.main.GameFx;
+import commanderKeen.states.State;
+import javafx.scene.input.KeyEvent;
+
+import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class MapKeen extends Keen {
-    private static Spritesheet idleSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 0, 16, 16);
-    private static Spritesheet animationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 2, 16, 16, 16, 0);
 
-    private boolean up = false;
-    private boolean down = false;
+    protected final float GRAVITY = 0.2F;
+    protected final float MAX_FALLING_SPEED = 4.5F;
+    protected float jumpStart = -4.0F;
+
+    private double jumpHeight = 4.5f;
+    private static Spritesheet animationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 2, 16, 16, 16, 0);
 
     {
         idle = DOWN;
         speed = 1;
     }
 
-    public MapKeen(Level level) {
-        super(level, 16 * 4, 16 * 33, 14, 16, new Animation(animationSprite, 3, 3, 71), idleSprite);
+    public MapKeen(Level level, State state) {
+        super(level, 16 * 4, 16 * 33, 13, 16, new Animation(animationSprite, 3, 3, 71), state);
     }
 
-    @Override
-    protected void calculateAnimation() {
-        animation.update();
-        if(dx > 0) {
-            if(animation.getCurrentState() != RIGHT) {
-                animation.setState(RIGHT);
-                idle = RIGHT;
-            }
-            texture = animation.getImage();
-        } else if(dx < 0) {
-            if(animation.getCurrentState() != LEFT) {
-                animation.setState(LEFT);
-                idle = LEFT;
-            }
-            texture = animation.getImage();
-        }else if(dy > 0) {
-            if(animation.getCurrentState() != DOWN) {
-                animation.setState(DOWN);
-                idle = DOWN;
-            }
-            texture = animation.getImage();
-        } else if(dy < 0) {
-            if(animation.getCurrentState() != UP) {
-                animation.setState(UP);
-                idle = UP;
-            }
-            texture = animation.getImage();
-        }else if(dx == 0 && dy == 0) {
-            texture = idleSprite.getImage(idle, 0);
+    public void keyPressed(KeyEvent e){
+        switch (e.getCode()){
+            case W: setUp(true);break;
+            case S: setDown(true);break;
+            case A: setLeft(true);break;
+            case D: setRight(true);break;
+            case CONTROL: interact();
         }
     }
 
-    @Override
-    protected void move() {
-        x += dx;
-        y += dy;
-        camToX += dx;
-        camToY += dy;
-        dx = 0;
-        dy = 0;
+    private void interact() {
+        for(int yy=0;yy< level.level[0].length;yy++) {
+            for (int xx=0;xx<level.level.length;xx++) {
+                if(getBoundsBottom().intersects(level.level[xx][yy].getBlock().getBounds())){
+                    level.level[xx][yy].getBlock().interact(this, state);
+                }
+            }
+        }
     }
 
-    @Override
-    protected void calculateMovement() {
-        if(left) dx = -speed;
-        if(right) dx = speed;
-        if(up) dy = -speed;
-        if(down) dy = speed;
+    public void keyReleased(KeyEvent e){
+        switch (e.getCode()){
+            case W: setUp(false);break;
+            case S: setDown(false);break;
+            case A: setLeft(false);break;
+            case D: setRight(false);break;
+        }
     }
 
     public boolean getRight() {
