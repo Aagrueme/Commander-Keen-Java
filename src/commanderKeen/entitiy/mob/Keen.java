@@ -42,17 +42,35 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected int width = 16;
     protected int height = 16;
 
+    private Rectangle boundsBottom;
+    private Rectangle boundsTop;
+    private Rectangle boundsRight;
+    private Rectangle boundsLeft;
+
     protected BufferedImage texture;
     private double jumpHeight = 4.5f;
 
-    public Keen(Level level, double x, double y, Animation animation, Spritesheet idleSprite){
+    public Keen(Level level, double x, double y, int width, int height, Animation animation, Spritesheet idleSprite){
         this.level = level;
         this.x = x;
         this.y = y;
+        this.width = width;
+        this.height = height;
         this.animation = animation;
         this.idleSprite = idleSprite;
         this.animation.startAnimation();
         this.texture = animation.getImage();
+
+
+        int middleBoundsWidth = (int) Math.ceil(width / 2.0);
+
+        this.boundsBottom = new Rectangle(width /2 /2, height /2, middleBoundsWidth, (int) Math.ceil(height /2.0));
+
+        this.boundsTop = new Rectangle(width /2 /2, 0, middleBoundsWidth, (int) Math.floor(height/2.0));
+
+        this.boundsRight = new Rectangle(width /4 * 3, height /4, (int) Math.ceil((width - middleBoundsWidth) / 2.0), (int) Math.ceil(height/2.0));
+
+        this.boundsLeft = new Rectangle(0, height /4, (int) Math.floor((width - middleBoundsWidth) / 2.0), (int) Math.ceil(height /2.0));
     }
 
     @Override
@@ -69,7 +87,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     private void drawHitBox(Graphics2D g2d){
         g2d.setColor(Color.RED);
-        g2d.draw(getBounds());
+        g2d.draw(getBoundsBottom());
         g2d.draw(getBoundsRight());
         g2d.draw(getBoundsLeft());
         g2d.draw(getBoundsTop());
@@ -107,17 +125,17 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
             falling = true;
         }
     }
-    protected Rectangle getBounds() {
-        return new Rectangle(((int)x+(width/2)-((width/2)/2)), (int)(y+height/2), width/2, height/2);
+    protected Rectangle getBoundsBottom() {
+        return new Rectangle((int)x + boundsBottom.x, (int)(y + boundsBottom.y), boundsBottom.width, boundsBottom.height);
     }
     protected Rectangle getBoundsTop() {
-        return new Rectangle(((int)x+(width/2)-((width/2)/2)), (int)y, width/2, height/2);
+        return new Rectangle((int)x + boundsTop.x, (int)y, boundsTop.width, boundsTop.height);
     }
     protected Rectangle getBoundsRight() {
-        return new Rectangle(((int)x+(width/4*3)), (int)(y+height/4), width/4, height/2);
+        return new Rectangle((int)x + boundsRight.x, (int)(y+boundsRight.y), boundsRight.width, boundsRight.height);
     }
     protected Rectangle getBoundsLeft() {
-        return new Rectangle((int)x, (int)(y+height/4), width/4, height/2);
+        return new Rectangle((int)x, (int)y + boundsLeft.y, boundsLeft.width, boundsLeft.height);
     }
 
     protected void calculateAnimation(){
@@ -148,7 +166,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
     protected void collision() {
         for(int yy=0;yy< level.level[0].length;yy++) {
             for (int xx=0;xx<level.level.length;xx++) {
-                if(getBounds().intersects(level.level[xx][yy].getBlock().getBounds())) {
+                if(getBoundsBottom().intersects(level.level[xx][yy].getBlock().getBounds())) {
                     if(level.level[xx][yy].getBlock().isSolid()) {
                         y = level.level[xx][yy].getBlock().getBounds().getY() - height;
                     }
