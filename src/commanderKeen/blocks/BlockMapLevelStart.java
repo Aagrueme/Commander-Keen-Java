@@ -1,15 +1,24 @@
 package commanderKeen.blocks;
 
 import aagrueme.com.github.api.ImageLoader;
+import aagrueme.com.github.api.ResourceLoader;
 import aagrueme.com.github.api.Spritesheet;
+import commanderKeen.entitiy.mob.Keen;
+import commanderKeen.levels.Level;
+import commanderKeen.main.GameFx;
+import commanderKeen.states.MapState;
+import commanderKeen.states.State;
+import commanderKeen.util.LevelSlot;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 public class BlockMapLevelStart extends Block {
 
     private static Spritesheet variationSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/textures/blocks/map_level_start.png"), 0, 18, 16, 16);
     private Variation variation;
+    private Level level;
 
     public BlockMapLevelStart(Variation variation) {
         super("block_map_level_start_" + variation.name() + "_solid_false", false);
@@ -43,6 +52,20 @@ public class BlockMapLevelStart extends Block {
         Variation(BufferedImage texture){
             this.texture = texture;
         }
+    }
+
+    @Override
+    public void interact(Keen player, State rawState) {
+        MapState state = (MapState) rawState;
+        state.openLevel(new Level(new LevelSlot[116][117], 0, 0) {
+            {
+                try {
+                    setBlocks(convertLevelFileToLevelData(ResourceLoader.load("commanderKeen/levels/level_1.level")));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

@@ -3,8 +3,12 @@ package commanderKeen.blocks;
 import aagrueme.com.github.api.Animation;
 import aagrueme.com.github.api.ResourceLoader;
 import commanderKeen.entitiy.mob.Keen;
+import commanderKeen.levels.Level;
 import commanderKeen.main.GameFx;
 import commanderKeen.registry.GameRegistry;
+import commanderKeen.states.MapState;
+import commanderKeen.states.State;
+import commanderKeen.util.LevelSlot;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -121,6 +125,19 @@ public abstract class Block implements Cloneable, Serializable {
         }
     }
 
+    public void interact(Keen player, State rawState){
+        MapState state = (MapState) rawState;
+        state.openLevel(new Level(new LevelSlot[116][117], 0, 0) {
+            {
+                try {
+                    setBlocks(convertLevelFileToLevelData(ResourceLoader.load("commanderKeen/levels/level_1.level")));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
     public void renderEditorBlock(Graphics2D g2d, int x, int y){
         render(g2d, x, y);
     }
@@ -140,5 +157,9 @@ public abstract class Block implements Cloneable, Serializable {
 
     public boolean isSolid() {
         return solid;
+    }
+
+    public boolean collision(Rectangle player) {
+        return player.intersects(getBounds()) && solid;
     }
 }

@@ -1,5 +1,6 @@
 package commanderKeen.states;
 
+import commanderKeen.levels.Level;
 import commanderKeen.main.GameFx;
 import javafx.scene.input.ScrollEvent;
 
@@ -10,8 +11,7 @@ public class GameStateManager {
     public static final int LOAD_STATE = 0;
     public static final int MENU_STATE = 1;
     public static final int MAP_STATE = 2;
-    public static final int LEVEL_STATE = 3;
-    public static final int EDITOR_STATE = 4;
+    public static final int EDITOR_STATE = 3;
     public GameFx game;
 
     public State getState(){
@@ -33,10 +33,6 @@ public class GameStateManager {
                 mas = new MapState(this);
                 states[2] = mas;
                 break;
-            case 3:
-                les = new LevelState(this);
-                states[3] = les;
-                break;
             case 4:
                 es = new EditorState(this);
                 states[4] = es;
@@ -47,7 +43,6 @@ public class GameStateManager {
     private int state;
     private MapState mas;
     private MenuState mes;
-    private LevelState les;
     private LoadState los;
     private EditorState es;
     private State[] states;
@@ -67,8 +62,7 @@ public class GameStateManager {
         states[0] = los;
         states[1] = mes;
         states[2] = mas;
-        states[3] = les;
-        states[4] = es;
+        states[3] = es;
     }
 
     public void update(){

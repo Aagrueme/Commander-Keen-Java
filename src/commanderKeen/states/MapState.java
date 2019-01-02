@@ -2,28 +2,27 @@ package commanderKeen.states;
 
 import aagrueme.com.github.api.ImageLoader;
 import commanderKeen.entitiy.mob.MapKeen;
+import commanderKeen.levels.Level;
 import commanderKeen.levels.MapLevel;
-import commanderKeen.main.Game;
 import commanderKeen.main.GameFx;
-import commanderKeen.main.GamePanel;
 import commanderKeen.util.Camera;
 import javafx.scene.input.ScrollEvent;
 
 import java.awt.*;
 import javafx.scene.input.*;
 
-import static javafx.scene.input.KeyCode.D;
-
 public class MapState extends State {
 
+	private boolean levelState = false;
+
     private Camera camera;
-    MapLevel level;
+    Level level;
 	MapKeen keen;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GameFx.width / GameFx.ORIGINAL_WIDTH, GameFx.height / GameFx.ORIGINAL_HEIGHT);
         level = new MapLevel();
-        keen = new MapKeen(level);
+        keen = new MapKeen(level, this);
         camera = new Camera(keen);
 	}
 
@@ -31,7 +30,6 @@ public class MapState extends State {
 	public void update() {
 		setScale(GameFx.width / 320d, GameFx.height / 200d);
 		level.update();
-        camera.update();
 		keen.update();
 		camera.update();
 	}
@@ -46,22 +44,12 @@ public class MapState extends State {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-	    switch (e.getCode()){
-			case W: keen.setUp(true);break;
-            case S: keen.setDown(true);break;
-            case A: keen.setLeft(true);break;
-            case D: keen.setRight(true);break;
-        }
+	    keen.keyPressed(e);
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-        switch (e.getCode()){
-            case W: keen.setUp(false);break;
-            case S: keen.setDown(false);break;
-            case A: keen.setLeft(false);break;
-            case D: keen.setRight(false);break;
-        }
+        keen.keyReleased(e);
 	}
 
 	@Override
@@ -87,5 +75,12 @@ public class MapState extends State {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
+	}
+
+	public void openLevel(Level level) {
+		levelState = true;
+        this.level = level;
+		keen = new MapKeen(level, this);
+		camera = new Camera(keen);
 	}
 }

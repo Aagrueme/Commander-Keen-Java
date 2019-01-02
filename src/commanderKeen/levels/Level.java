@@ -40,6 +40,8 @@ public abstract class Level {
         this.x = x;
         this.y = y;
         this.grid = GameFx.debug;
+
+        Levels.add(this);
     }
 
     @Override
