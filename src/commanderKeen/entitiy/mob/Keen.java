@@ -8,23 +8,22 @@ import commanderKeen.main.GameFx;
 import commanderKeen.states.State;
 import commanderKeen.util.IHasRenderer;
 import commanderKeen.util.IHasUpdater;
+import javafx.scene.input.KeyEvent;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public abstract class Keen implements IHasUpdater, IHasRenderer {
-    protected static final int RIGHT = 0;
-    protected static final int DOWN = 1;
-    protected static final int LEFT = 2;
-    protected static final int UP = 3;
+    protected static int RIGHT = 0;
+    protected static int DOWN = 1;
+    protected static int LEFT = 2;
+    protected static int UP = 3;
 
     public boolean right = false;
     public boolean left = false;
     public boolean up = false;
     public boolean down = false;
-    public boolean jump = false;
-    public boolean falling = false;
 
     protected double dx;
     protected double dy;
@@ -50,13 +49,14 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     protected State state;
 
-    private static Spritesheet idleSprite = new Spritesheet((BufferedImage) ImageLoader.loadImage("commanderKeen/assets/entity/keen_map.png"), 3, 0, 16, 16);
+    private static Spritesheet idleSprite;
 
     protected int idle = DOWN;
 
     protected BufferedImage texture;
+    protected boolean ground;
 
-    public Keen(Level level, double x, double y, int width, int height, Animation animation, State state) {
+    public Keen(Level level, double x, double y, int width, int height, Animation animation, Spritesheet idleSprite, State state) {
         this.level = level;
         this.x = x;
         this.y = y;
@@ -65,6 +65,7 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         this.animation = animation;
         this.animation.startAnimation();
         this.texture = animation.getImage();
+        this.idleSprite = idleSprite;
         this.state = state;
 
 
@@ -109,6 +110,20 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
         if(down) dy = speed;
     }
 
+    public void keyPressed(KeyEvent e){
+        switch (e.getCode()){
+            case A: setLeft(true);break;
+            case D: setRight(true);break;
+        }
+    }
+
+    public void keyReleased(KeyEvent e){
+        switch (e.getCode()){
+            case A: setLeft(false);break;
+            case D: setRight(false);break;
+        }
+    }
+
     protected void collision() {
         for(int yy=0;yy< level.level[0].length;yy++) {
             for (int xx=0;xx<level.level.length;xx++) {
@@ -126,7 +141,6 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
                     if(dx > 0) {
                         dx = 0;
                     }
-
                 }
                 if(level.level[xx][yy].getBlock().collision(getBoundsLeft())) {
                     if(dx < 0) {
@@ -134,7 +148,6 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
                     }
                 }
             }
-
         }
     }
 
@@ -205,5 +218,12 @@ public abstract class Keen implements IHasUpdater, IHasRenderer {
 
     public double getY() {
         return y;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
+    public void setLeft(boolean left) {
+        this.left = left;
     }
 }

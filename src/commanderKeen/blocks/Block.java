@@ -160,6 +160,6 @@ public abstract class Block implements Cloneable, Serializable {
     }
 
     public boolean collision(Rectangle player) {
-        return player.intersects(getBounds()) && solid;
+        return player.intersects(getBounds()) && isSolid();
     }
 }

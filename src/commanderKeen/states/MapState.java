@@ -1,6 +1,8 @@
 package commanderKeen.states;
 
 import aagrueme.com.github.api.ImageLoader;
+import commanderKeen.entitiy.mob.Keen;
+import commanderKeen.entitiy.mob.LevelKeen;
 import commanderKeen.entitiy.mob.MapKeen;
 import commanderKeen.levels.Level;
 import commanderKeen.levels.MapLevel;
@@ -17,12 +19,12 @@ public class MapState extends State {
 
     private Camera camera;
     Level level;
-	MapKeen keen;
+	Keen keen;
 
 	public MapState(GameStateManager gsm) {
 		super(gsm, GameFx.width / GameFx.ORIGINAL_WIDTH, GameFx.height / GameFx.ORIGINAL_HEIGHT);
         level = new MapLevel();
-        keen = new MapKeen(level, this);
+        keen = new LevelKeen(level, 16 * 3, 16*33, this);
         camera = new Camera(keen);
 	}
 
